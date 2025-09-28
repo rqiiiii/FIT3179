@@ -39,7 +39,7 @@
         "color": {
           "field": "Accident Rate",
           "type": "quantitative",
-          "title": "Accidents per 10k Vehicles",
+          "title": "Accidents per 10,000 Vehicles",
           "scale": {"scheme": "Reds"}
         },
         "tooltip": [

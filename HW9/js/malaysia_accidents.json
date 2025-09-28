@@ -25,7 +25,7 @@
           "lookup": "properties.Name",
           "from": {
             "data": {
-              "url": "https://gist.githubusercontent.com/rqiiiii/ceb2648e546447706e8c496c91fcc911/raw/2d87196f7cbe1b63c0361f7ca02b85b9357bea84/malaysia_accident_2011.csv",
+              "url": "https://raw.githubusercontent.com/rqiiiii/FIT3179/refs/heads/main/HW9/data/malaysia_accidents_2011.csv",
               "format": {"type": "csv"}
             },
             "key": "States",

@@ -1,44 +1,79 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 400,
-  "height": 400,
+  "width": 1000,
+  "height": 800,
   "data": {
     "url": "https://gist.githubusercontent.com/rqiiiii/f7868af7c80ac82caa6536d1045301e0/raw/44203f0a2d9f419084edebcc2a34f7a9a1b69034/2000-2021%2520Number%2520of%2520deaths%2520and%2520injuries%2520in%2520road%2520ac.csv"
   },
+
+  "params": [
+    {
+      "name": "startYear",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2020,
+        "step": 1,
+        "name": "Start Year:"
+      }
+    },
+    {
+      "name": "endYear",
+      "value": 2021,
+      "bind": {
+        "input": "range",
+        "min": 2001,
+        "max": 2021,
+        "step": 1,
+        "name": "End Year:"
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "filter": "year(datum.Year) >= startYear && year(datum.Year) <= endYear"
+    }
+  ],
+
   "facet": {
     "field": "Condition",
     "type": "nominal",
-    "title": "Condition"
-  },
-  "spec": {
-    "mark": {"type": "area", "interpolate": "monotone"},
-    "encoding": {
-      "x": {
-        "field": "Year",
-        "type": "temporal",
-        "axis": {"title": "Year"}
-      },
-      "y": {
-        "aggregate": "sum",
-        "field": "Value",
-        "type": "quantitative",
-        "scale": {"scheme": "set2"},
-        "axis": {"title": "Count"}
-      },
-      "color": {
-        "field": "Type of road user",
-        "type": "nominal",
-  
-        "scale": {"scheme": "set2"},
-        "title": "Road User"
-      }
-      ,
-      "tooltip": [
-        {"field": "Year", "type": "temporal","format": "%Y"},
-        {"field": "Type of road user", "type": "nominal"},
-        {"field": "Condition", "type": "nominal"},
-        {"field": "Value", "type": "quantitative"}
-      ]
+    "title": "Condition",
+    "header": {
+      "labelFontSize": 18,      
+      "titleFontSize": 22,       
+      "labelFontWeight": "bold"
     }
-  }
+  },
+"spec": {
+  "layer": [
+    {
+      "mark": {"type": "area", "interpolate": "monotone"},
+      "encoding": {
+        "x": {"field": "Year", "type": "temporal", "axis": {"title": "Year"}},
+        "y": {
+          "aggregate": "sum",
+          "field": "Value",
+          "type": "quantitative",
+          "axis": {"title": "Count"}
+        },
+        "color": {
+          "field": "Type of road user",
+          "type": "nominal",
+          "scale": {"scheme": "set2"},
+          "title": "Road User"
+        },
+        "tooltip": [
+          {"field": "Year", "type": "temporal", "format": "%Y"},
+          {"field": "Type of road user", "type": "nominal"},
+          {"field": "Condition", "type": "nominal"},
+          {"field": "Value", "type": "quantitative"}
+        ]
+      }
+    }
+  ]
+}
+
 }

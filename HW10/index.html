@@ -1,32 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Malaysia Choropleth Map</title>
-  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malaysia Road Accident Visualisation</title>
+
+  <!-- Vega Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
   <style>
+    /* --- Basic Page Styling --- */
     body {
       display: flex;
-      flex-direction: column;  /* stack vertically */
-      align-items: center;     /* center horizontally */
-      justify-content: center; /* optional vertical centering if viewport tall */
+      flex-direction: column;
+      align-items: center;
       margin: 0;
       padding: 20px;
-      font-family: sans-serif;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #fafafa;
+      color: #333;
     }
 
-    h1, p {
+    header {
       text-align: center;
-      width: 100%;
+      margin-bottom: 30px;
     }
 
-    #choroplethmap, #areastack {
-      max-width: 900px;        /* limit width so charts stay centered */
-      width: 100%;             /* responsive within max-width */
-      margin: 0 auto 40px auto;/* center horizontally & add bottom gap */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 0 auto 20px auto;
+      line-height: 1.6;
+    }
+
+    /* --- Chart Containers --- */
+    #choroplethmap,
+    #areastack {
+      width: 100%;
+      max-width: 900px;
+      margin: 20px auto 40px auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      padding: 10px;
     }
 
     #choroplethmap {
@@ -34,17 +56,35 @@
     }
 
     #areastack {
-      height: 600px;           /* make area chart larger */
+      height: 600px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: 40px;
     }
   </style>
 </head>
-<body>
-  <h1>Road Accidents in Malaysia (2011)</h1>
-  <p>This choropleth map shows the number of accidents per 10,000 registered vehicles by state.</p>
-  <div id="choroplethmap"></div>
-  <p>Comparing deaths and injuries with type of road users</p>
-  <div id="areastack"></div>
 
+<body>
+  <header>
+    <h1>Road Accidents in Malaysia (2011)</h1>
+  </header>
+
+  <!-- Choropleth Map -->
+   <p>
+      This choropleth map visualises the number of road accidents per 10,000
+      registered vehicles by state. The area chart below compares deaths and
+      injuries by road user type across different years.
+    </p>
+  <section id="choroplethmap" aria-label="Malaysia Road Accidents Choropleth Map"></section>
+
+  <!-- Area Chart -->
+  <section id="areastack" aria-label="Deaths and Injuries Area Chart"></section>
+
+  <!-- Vega Visualisation Scripts -->
   <script src="js/vega_lite_vis.js"></script>
 </body>
 </html>

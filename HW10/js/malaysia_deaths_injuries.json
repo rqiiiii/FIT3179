@@ -32,9 +32,7 @@
   ],
 
   "transform": [
-    {
-      "filter": "year(datum.Year) >= startYear && year(datum.Year) <= endYear"
-    }
+    {"filter": "year(datum.Year) >= startYear && year(datum.Year) <= endYear"}
   ],
 
   "facet": {
@@ -42,38 +40,82 @@
     "type": "nominal",
     "title": "Condition",
     "header": {
-      "labelFontSize": 18,      
-      "titleFontSize": 22,       
+      "labelFontSize": 18,
+      "titleFontSize": 22,
       "labelFontWeight": "bold"
     }
   },
-"spec": {
-  "layer": [
-    {
-      "mark": {"type": "area", "interpolate": "monotone"},
-      "encoding": {
-        "x": {"field": "Year", "type": "temporal", "axis": {"title": "Year"}},
-        "y": {
-          "aggregate": "sum",
-          "field": "Value",
-          "type": "quantitative",
-          "axis": {"title": "Count"}
-        },
-        "color": {
-          "field": "Type of road user",
-          "type": "nominal",
-          "scale": {"scheme": "set2"},
-          "title": "Road User"
-        },
-        "tooltip": [
-          {"field": "Year", "type": "temporal", "format": "%Y"},
-          {"field": "Type of road user", "type": "nominal"},
-          {"field": "Condition", "type": "nominal"},
-          {"field": "Value", "type": "quantitative"}
-        ]
-      }
-    }
-  ]
-}
 
+  "spec": {
+    "layer": [
+      {
+        "mark": {"type": "area", "interpolate": "monotone"},
+        "encoding": {
+          "x": {"field": "Year", "type": "temporal", "axis": {"title": "Year"}},
+          "y": {
+            "aggregate": "sum",
+            "field": "Value",
+            "type": "quantitative",
+            "axis": {"title": "Count"}
+          },
+          "color": {
+            "field": "Type of road user",
+            "type": "nominal",
+            "scale": {"scheme": "set2"},
+            "title": "Road User"
+          },
+          "tooltip": [
+            {"field": "Year", "type": "temporal", "format": "%Y"},
+            {"field": "Type of road user", "type": "nominal"},
+            {"field": "Condition", "type": "nominal"},
+            {"field": "Value", "type": "quantitative"}
+          ]
+        }
+      },
+      {
+        "data": {
+          "values": [
+            {
+              "Year": "2004",
+              "Value": 20000,
+              "Label": "Peak of Accidents",
+              "Condition": "Injuries"
+            }
+          ]
+        },
+        "transform": [{"filter": "datum.Condition == 'Injuries'"}],
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "dx": 8,
+          "dy": -140,
+          "fontSize": 13,
+          "fontWeight": "bold",
+          "color": "black"
+        },
+        "encoding": {
+          "x": {"field": "Year", "type": "temporal"},
+          "text": {"field": "Label"}
+        }
+      },
+
+      {
+        "data": {
+          "values": [
+            {
+              "Year": "2004",
+              "Label": "2005 Peak (Motorcyclists)",
+              "Condition": "Deaths"
+            }
+          ]
+        },
+        "transform": [{"filter": "datum.Condition == 'Deaths'"}],
+        "mark": {"type": "rule", "color": "red", "strokeWidth": 2},
+        "encoding": {
+          "x": {"field": "Year", "type": "temporal"}
+        }
+      },
+      
+    ]
+  }
 }

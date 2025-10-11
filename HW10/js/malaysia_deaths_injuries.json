@@ -105,8 +105,7 @@
         "encoding": {
           "x": {"field": "Year", "type": "temporal"}
         }
-      },
-      
+      }   
     ]
   }
 }

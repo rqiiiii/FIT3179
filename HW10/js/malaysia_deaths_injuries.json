@@ -8,17 +8,6 @@
 
   "params": [
     {
-      "name": "startYear",
-      "value": 2000,
-      "bind": {
-        "input": "range",
-        "min": 2000,
-        "max": 2020,
-        "step": 1,
-        "name": "Start Year:"
-      }
-    },
-    {
       "name": "endYear",
       "value": 2021,
       "bind": {
@@ -26,13 +15,13 @@
         "min": 2001,
         "max": 2021,
         "step": 1,
-        "name": "End Year:"
+        "name": "Year up to:"
       }
     }
   ],
 
   "transform": [
-    {"filter": "year(datum.Year) >= startYear && year(datum.Year) <= endYear"}
+    {"filter": "year(datum.Year) <= endYear"}
   ],
 
   "facet": {
@@ -83,7 +72,8 @@
             }
           ]
         },
-        "transform": [{"filter": "datum.Condition == 'Injuries'"}],
+        "transform": [{"filter": "datum.Condition == 'Injuries'"},
+                      {"filter": "year(datum.Year) <= endYear"}],
         "mark": {
           "type": "text",
           "align": "left",
@@ -109,7 +99,8 @@
             }
           ]
         },
-        "transform": [{"filter": "datum.Condition == 'Deaths'"}],
+        "transform": [{"filter": "datum.Condition == 'Deaths'"},
+                      {"filter": "year(datum.Year) <= endYear"} ],
         "mark": {"type": "rule", "color": "red", "strokeWidth": 2},
         "encoding": {
           "x": {"field": "Year", "type": "temporal"}

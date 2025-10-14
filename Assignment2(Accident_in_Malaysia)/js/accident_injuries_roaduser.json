@@ -1,0 +1,117 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "width": 100,
+  "height": 80,
+  "params": [
+    {
+      "name": "YearFilter",
+      "value": 2000,
+      "bind": {
+        "input": "range",
+        "min": 2000,
+        "max": 2019,
+        "step": 1
+      }
+    }
+  ],
+  "data": {
+    "url": "https://gist.githubusercontent.com/rqiiiii/bb90ab292705f2b15fb99fa0ee02e205/raw/12ae48c07aef2d276eaefcfcda78c886756a8ee5/accident_injuries_roaduser.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.Year == YearFilter"
+    },
+    {
+          "joinaggregate": [
+            {"op": "sum", "field": "Value", "as": "YearTotal"}
+          ]
+    },
+    {
+      "calculate": "datum.Value",
+      "as": "Used"
+    },
+    {
+      "calculate": "datum.Sum - datum.Value",
+      "as": "Remaining"
+    },
+    {
+      "fold": ["Used", "Remaining"],
+      "as": ["Category", "Amount"]
+    },
+    {"calculate": "datum.Amount / datum.Sum * 100", "as": "Percent"},
+    {"calculate": "datum.Amount / datum.Sum * 3.1416", "as": "Angle"}
+
+  ],
+  "facet": {
+    "field": "Type of Vehicle",
+    "type": "nominal",
+    "sort": [
+      "Bicycle",
+      "Bus",
+      "Jeep",
+      "Motorcar",
+      "Motorcycle",
+      "Pedestrian",
+      "Trailer/Lorry",
+      "Vans",
+      "Others"
+    ]
+  },
+  "spec": {
+    "width": 150,              
+    "height": 90,
+    "mark": {"type": "arc", "innerRadius": 60},
+    "encoding": {
+        "theta": {
+          "field": "Amount",
+          "type": "quantitative",
+          "scale": {"type": "linear", "domain": [0, {"signal": "data('source_0')[0].Sum"}], "range": [-1.5708, 1.5708]}
+        },
+      "color": {
+        "condition": {
+          "test": "datum.Category == 'Used'",
+          "field": "Type of Vehicle",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Bicycle",
+              "Bus",
+              "Jeep",
+              "Motorcar",
+              "Motorcycle",
+              "Pedestrian",
+              "Trailer/Lorry",
+              "Vans",
+              "Others"
+            ],
+            "range": [
+              "#1f77b4",
+              "#ff7f0e",
+              "#2ca02c",
+              "#9467bd",
+              "#8c564b",
+              "#e377c2",
+              "#17becf",
+              "#bcbd22"
+            ]
+          }
+        },
+        "value": "#d3d3d3"
+      },
+      "tooltip": [
+        {"field": "Type of Vehicle", "type": "nominal"},
+        {"field": "Category", "type": "nominal"},
+        {"field": "Percent", "type": "quantitative", "title": "Percentage", "format": ".2f"},
+        {"field": "Amount", "type": "quantitative"}
+      ]
+    }
+  },
+  "config": {
+    "legend": {"disable": true},
+    "facet": {
+      "spacing": 10,
+      "columns": 9,
+      "title": null
+    }
+  }
+}

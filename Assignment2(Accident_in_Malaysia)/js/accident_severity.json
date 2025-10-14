@@ -1,0 +1,131 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Traffic accidents by state and severity in Malaysia (with year filter and zoomed-in view).",
+  "data": {
+    "url": "https://gist.githubusercontent.com/rqiiiii/807b12c0a23de4f9eb4f3ccb411f8820/raw/7fd3bae1fbe29ae1cbfb617f87611cd94a4b7dd4/road_accident_severity.csv"
+  },
+  "params": [
+    {
+      "name": "YearFilter",
+      "value": 2011,
+      "bind": {"input": "range", "min": 2011, "max": 2019, "step": 1}
+    }
+  ],
+  "hconcat": [
+    {
+      "title": "Total Accidents by Severity and State (All Categories)",
+      "transform": [
+        {"calculate": "trim(datum.States)", "as": "CleanState"},
+        {"filter": "datum.Year == YearFilter"},
+        {
+          "fold": [
+            "Fatal Accidents",
+            "Serious Accidents",
+            "Minor Accidents",
+            "Damage-Only Accidents"
+          ],
+          "as": ["Severity", "Accidents"]
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "CleanState",
+          "type": "nominal",
+          "axis": {"labelAngle": -45},
+          "title": "State"
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "Accidents",
+          "type": "quantitative",
+          "title": "Number of Accidents"
+        },
+        "color": {
+          "field": "Severity",
+          "type": "nominal",
+          "title": "Severity Level",
+          "scale": {
+            "domain": [
+              "Fatal Accidents",
+              "Serious Accidents",
+              "Minor Accidents",
+              "Damage-Only Accidents"
+            ],
+            "range": ["#d73027", "#fc8d59", "#fee090", "#91bfdb"]
+          }
+        },
+        "tooltip": [
+          {"field": "CleanState", "type": "nominal", "title": "State"},
+          {"field": "Severity", "type": "nominal", "title": "Severity"},
+          {
+            "aggregate": "sum",
+            "field": "Accidents",
+            "type": "quantitative",
+            "title": "Accidents"
+          },
+          {"field": "Year", "type": "ordinal", "title": "Year"}
+        ]
+      }
+    },
+    {
+      "title": "Zoomed-In View: Fatal, Serious, and Minor Accidents Only",
+      "transform": [
+        {"calculate": "trim(datum.States)", "as": "CleanState"},
+        {"filter": "datum.Year == YearFilter"},
+        {
+          "fold": [
+            "Fatal Accidents",
+            "Serious Accidents",
+            "Minor Accidents"
+          ],
+          "as": ["Severity", "Accidents"]
+        }
+      ],
+      "mark": "bar",
+      "encoding": {
+        "x": {
+          "field": "CleanState",
+          "type": "nominal",
+          "axis": {"labelAngle": -45},
+          "title": "State"
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "Accidents",
+          "type": "quantitative",
+          "title": "Number of Accidents (Zoomed)"
+        },
+        "color": {
+          "field": "Severity",
+          "type": "nominal",
+          "title": "Severity Level",
+          "scale": {
+            "domain": [
+              "Fatal Accidents",
+              "Serious Accidents",
+              "Minor Accidents",
+              "Damage-Only Accidents"
+            ],
+            "range": ["#d73027", "#fc8d59", "#fee090", "#91bfdb"]
+          }
+        },
+        "tooltip": [
+          {"field": "CleanState", "type": "nominal", "title": "State"},
+          {"field": "Severity", "type": "nominal", "title": "Severity"},
+          {
+            "aggregate": "sum",
+            "field": "Accidents",
+            "type": "quantitative",
+            "title": "Accidents"
+          },
+          {"field": "Year", "type": "ordinal", "title": "Year"}
+        ]
+      }
+    }
+  ],
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"labelFontSize": 11, "titleFontSize": 12}
+  }
+}

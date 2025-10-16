@@ -1,8 +1,10 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Rank bump chart of accident severity by state",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Malaysian State Ranking by Accident Severity (2011-2021)",
   "width": 900,
-  "height": 500,
+  "height": 600,
+  "padding": 20,
+  "background": "#fafafa",
   "data": {
     "url": "https://gist.githubusercontent.com/rqiiiii/807b12c0a23de4f9eb4f3ccb411f8820/raw/47f82169eb38ee9a1f2d8d68b9878c7ee2dec6eb/road_accident_severity.csv",
     "format": {"type": "csv"}
@@ -20,7 +22,10 @@
     },
     {
       "window": [{"op": "rank", "as": "Rank"}],
-      "sort": [{"field": "Count", "order": "descending"}],
+      "sort": [
+        {"field": "Count", "order": "descending"},
+        {"field": "States", "order": "ascending"}
+      ],
       "groupby": ["Year", "Severity"]
     },
     {"filter": "datum.Severity == severitySelect"},
@@ -68,17 +73,47 @@
   ],
   "layer": [
     {
-      "mark": {"type": "line", "strokeWidth": 2},
+      "mark": {"type": "line", "strokeWidth": 2, "opacity": 0.9},
       "encoding": {
-        "x": {"field": "Year", "type": "ordinal", "axis": {"labelAngle": 0, "title": "Year"}},
-        "y": {
-          "field": "Rank", 
-          "type": "quantitative", 
-          "scale": {"reverse": true, "domain": [1, 14]},
-          "axis": {"title": "Rank (1 = Highest)", "tickCount": 14},
-          "title": "Rank (1 = Highest)"
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "axis": {"labelAngle": 0, "title": "Year", "grid": false}
         },
-        "color": {"field": "States", "type": "nominal", "legend": {"title": "State", "columns": 2}},
+        "y": {
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {"reverse": true, "domain": [1, 15]},
+          "axis": {"title": "Rank (1 = Highest)", "tickCount": 14, "grid": true}
+        },
+        "color": {
+          "field": "States",
+          "type": "nominal",
+          "legend": {"title": "State", "columns": 2},
+          "scale": {
+            "domain": [
+              "Johor", "Selangor", "Kedah", "Pulau Pinang", "Perak",
+              "Perlis", "Kelantan", "Terengganu", "Pahang",
+              "Melaka", "Negeri Sembilan", "Sabah", "Sarawak", "Kuala Lumpur"
+            ],
+            "range": [
+              "#0033A0",  
+              "#FFD700",  
+              "#006A4E",  
+              "#0071BC",  
+              "#5A5A5A",  
+              "#00AEEF",  
+              "#D71A28",  
+              "#301934",  
+              "#B8860B",  
+              "#FF0000",  
+              "#F4C300",  
+              "#0072CE", 
+              "#C8102E",  
+              "#000000"   
+            ]
+          }
+        },
         "detail": {"field": "States", "type": "nominal"},
         "tooltip": [
           {"field": "States", "type": "nominal", "title": "State"},
@@ -88,14 +123,21 @@
         ]
       }
     },
+    { "mark": {"type": "circle", "size": 700, "color": "white", "stroke": "black", "strokeWidth": 2, "tooltip": null, "interactive": false}, "encoding": { "x": {"field": "Year", "type": "ordinal"}, "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true}} } }
+    ,
     {
-      "mark": {"type": "image", "width": 40, "height": 40},
+      "mark": {
+        "type": "image",
+        "width": 60,
+        "height": 60,
+        "aspect": true
+      },
       "encoding": {
         "x": {"field": "Year", "type": "ordinal"},
         "y": {
-          "field": "Rank", 
-          "type": "quantitative", 
-          "scale": {"reverse": true, "domain": [1, 14]}
+          "field": "Rank",
+          "type": "quantitative",
+          "scale": {"reverse": true}
         },
         "url": {"field": "flagURL", "type": "nominal"},
         "tooltip": [
@@ -107,9 +149,14 @@
       }
     }
   ],
+  "config": {
+    "view": {"stroke": "transparent"},
+    "axis": {"domainWidth": 1}
+  },
   "title": {
-    "text": "State Ranking by Accident Severity (2011–2021)",
+    "text": "Malaysian State Ranking by Accident Severity (2011–2021)",
     "fontSize": 18,
-    "anchor": "start"
+    "anchor": "start",
+    "offset": 10
   }
 }

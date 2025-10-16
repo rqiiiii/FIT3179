@@ -1,58 +1,127 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 700,
-  "height": 400,
+  "title": "Road Accident Rates in Malaysia by State (2011–2021)",
+  "width": 1200,
+  "height": 520,
+  "background": "#e6f2ff", 
+  "autosize": {"type": "fit", "contains": "padding"},
+
+  "params": [
+    {
+      "name": "selected_year",
+      "value": 2021,
+      "bind": {
+        "input": "range",
+        "min": 2011,
+        "max": 2021,
+        "step": 1,
+        "name": "Select Year: "
+      }
+
+    }
+  ],
+
   "projection": {
     "type": "mercator",
-    "center": [108, 4],
-    "scale": 2300  },
+    "center": [110, 4],
+    "scale": 2400
+  },
+
   "layer": [
     {
-      "data": {"sphere": true},
-      "mark": {"type": "geoshape", "fill": "lightblue"}
-    },
-    {
-      "data": {"graticule": {"step": [10, 10]}},
-      "mark": {"type": "geoshape", "stroke": "gray"}
+      "data": {
+        "graticule": {"step": [5, 5]}
+      },
+      "mark": {
+        "type": "geoshape",
+        "stroke": "#b0bec5",
+        "strokeWidth": 0.6
+      }
     },
     {
       "data": {
-        "url": "https://raw.githubusercontent.com/jnewbery/CartogramMalaysia/9ac25c828e0306dfa2c2869f98eb2b357da69764/public/data/malaysia-states.topojson",
-        "format": {"type": "topojson", "feature": "states"}
+        "url": "https://gist.githubusercontent.com/rqiiiii/a8e4dd9a63709834a4518d1d0b882f91/raw/f9944f7f27e516d29600f73db78ca30ff590d209/malaysia_map.topojson",
+        "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
       },
-      "transform": [
-        {
-          "lookup": "properties.Name",
-          "from": {
+      "mark": {"type": "geoshape", "fill": "#f5f5f5", "stroke": "white"}
+    },
+    {
             "data": {
-              "url": "https://raw.githubusercontent.com/rqiiiii/FIT3179/refs/heads/main/HW9/data/malaysia_accidents_2011.csv",
+              "url": "https://gist.githubusercontent.com/rqiiiii/19c51658dd8e38204c47e0978d922209/raw/28ad48dca7f48d83cc39ca0ccd1900347b2c5930/malaysia_accidents.csv",
               "format": {"type": "csv"}
             },
-            "key": "States",
-            "fields": ["Accident Rate"]
-          }
-        }
-      ],
-      "mark": {"type": "geoshape", "stroke": "black"},
+          "transform": [
+            {"filter": "datum.Year == selected_year"},
+    {
+      "lookup": "States",
+      "from": {
+        "data": {
+          "url": "https://gist.githubusercontent.com/rqiiiii/a8e4dd9a63709834a4518d1d0b882f91/raw/f9944f7f27e516d29600f73db78ca30ff590d209/malaysia_map.topojson",
+          "format": {"type": "topojson", "feature": "gadm41_MYS_1"}
+        },
+        "key": "properties.NAME_1"
+      },
+      "as": "geo"
+    },
+    {"calculate": "toNumber(datum['Accident Rate'])", "as": "AccidentRateNum"}
+  ]
+      ,
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.8},
       "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
         "color": {
           "field": "Accident Rate",
           "type": "quantitative",
-          "title": "Accidents per 10k Vehicles",
-          "scale": {"scheme": "Reds"}
+          "scale": {
+                        "domain": [0, 15, 30, 40],
+            "range": ["#ffcccc", "#ff6666", "#b30000"]
+            },
+          "legend": {
+            "title": "Accident Rate (per 1,000 population)",
+            "titleFontSize": 14,
+            "labelFontSize": 11,
+            "gradientLength": 300
+          }
         },
         "tooltip": [
-          {"field": "properties.Name", "title": "State"},
-          {"field": "Accident Rate", "title": "Accident Rate per 10k Vehicles"}
+          {"field": "States", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Total Accidents", "type": "quantitative"},
+          {"field": "Accident Rate", "type": "quantitative", "format": ".2f"}
         ]
       }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "fontSize": 24,
+        "fontWeight": "bold",
+        "font": "Poppins",
+        "fill": "#4b0082"
+      },
+      "encoding": {
+        "text": {"signal": "selected_year"},
+        "x": {"signal": "width / 2"},
+        "y": {"value": 40}
+      }
+    },
+    {
+      "data": {"values": [{}]}, 
+      "transform": [{"filter": "selected_year == 2021"}],
+      "mark": {
+        "type": "text",
+        "text": "⚠️In 2021, road accident had dropped due to COVID-19 Lockdown",
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "font": "Poppins",
+        "fill": "#000000",
+        "align": "left"
+      },
+      "encoding": {
+        "x": {"value": 10},
+        "y": {"value": 20}
+      }
     }
-  ],
-  "title": {
-  "text": "Road Accidents in Malaysia per 10,000 Vehicles (Year 2011)",
-  "fontSize": 22,
-  "fontWeight": "bold",
-  "anchor": "middle",
-  "offset": 10
-}
+  ]
 }

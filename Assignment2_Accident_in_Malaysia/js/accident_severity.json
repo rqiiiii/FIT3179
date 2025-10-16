@@ -25,11 +25,30 @@
     },
     {"filter": "datum.Severity == severitySelect"},
     {
-      "calculate": 
-      "datum.States === 'Johor' ? 'https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2(Accident_in_Malaysia)/data/image/Johor.png' : datum.States === 'Selangor' ? 'https://seekflag.com/wp-content/uploads/2022/01/Selangor-37.png' : datum.States === 'Kedah' ? 'https://seekflag.com/wp-content/uploads/2022/01/Kedah-37.png' : datum.States === 'Pulau Pinang' ? 'https://seekflag.com/wp-content/uploads/2022/01/Penang-37.png' : datum.States === 'Perak' ? 'https://seekflag.com/wp-content/uploads/2022/01/Perak-37.png' : datum.States === 'Perlis' ? 'https://seekflag.com/wp-content/uploads/2022/01/Perlis-37.png' : datum.States === 'Kelantan' ? 'https://seekflag.com/wp-content/uploads/2022/01/Kelantan-37.png' : datum.States === 'Terengganu' ? 'https://seekflag.com/wp-content/uploads/2022/01/Terengganu-37.png' : datum.States === 'Pahang' ? 'https://seekflag.com/wp-content/uploads/2022/01/Pahang-37.png' : datum.States === 'Melaka' ? 'https://seekflag.com/wp-content/uploads/2022/01/Malacca-37.png' : datum.States === 'Negeri Sembilan' ? 'https://seekflag.com/wp-content/uploads/2022/01/Negeri-Sembilan-37.png' : datum.States === 'Sabah' ? 'https://seekflag.com/wp-content/uploads/2022/01/Sabah-37.png' : datum.States === 'Sarawak' ? 'https://seekflag.com/wp-content/uploads/2022/01/Sarawak-37.png' : datum.States === 'Kuala Lumpur' ? 'https://seekflag.com/wp-content/uploads/2022/01/Kuala-Lumpur-37.png' : datum.States === 'W.P. Labuan' ? 'https://seekflag.com/wp-content/uploads/2022/01/Labuan.png' : datum.States === 'Putrajaya' ? 'https://seekflag.com/wp-content/uploads/2022/01/Putrajaya-37.png' : ''",
-      "as": "flagURL"
+      "lookup": "States",
+      "from": {
+        "data": {
+          "values": [
+            {"States": "Johor", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Johor-37.png"},
+            {"States": "Selangor", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Selangor-37.png"},
+            {"States": "Kedah", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Kedah-37.png"},
+            {"States": "Pulau Pinang", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Penang-37.png"},
+            {"States": "Perak", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Perak-37.png"},
+            {"States": "Perlis", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Perlis-37.png"},
+            {"States": "Kelantan", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Kelantan-37.png"},
+            {"States": "Terengganu", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Terengganu-37.png"},
+            {"States": "Pahang", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Pahang-37.png"},
+            {"States": "Melaka", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Malacca-37.png"},
+            {"States": "Negeri Sembilan", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Negeri-Sembilan-37.png"},
+            {"States": "Sabah", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Sabah-37.png"},
+            {"States": "Sarawak", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Sarawak-37.png"},
+            {"States": "Kuala Lumpur", "flagURL": "https://raw.githubusercontent.com/rqiiiii/FIT3179/main/Assignment2_Accident_in_Malaysia/data/image/Kuala-Lumpur-37.png"}
+          ]
+        },
+        "key": "States",
+        "fields": ["flagURL"]
+      }
     }
-
   ],
   "params": [
     {
@@ -48,40 +67,46 @@
     }
   ],
   "layer": [
-  {
-    "interactive": false,
-    "mark": {"type": "line", "tooltip": null},
-    "encoding": {
-      "x": {"field": "Year", "type": "ordinal", "axis": {"labelAngle": 0, "title": "Year"}},
-      "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true}, "title": "Rank (1 = Highest)"},
-      "color": {"field": "States", "type": "nominal", "legend": {"title": "State", "columns": 2}}
+    {
+      "mark": {"type": "line", "strokeWidth": 2},
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal", "axis": {"labelAngle": 0, "title": "Year"}},
+        "y": {
+          "field": "Rank", 
+          "type": "quantitative", 
+          "scale": {"reverse": true, "domain": [1, 14]},
+          "axis": {"title": "Rank (1 = Highest)", "tickCount": 14},
+          "title": "Rank (1 = Highest)"
+        },
+        "color": {"field": "States", "type": "nominal", "legend": {"title": "State", "columns": 2}},
+        "detail": {"field": "States", "type": "nominal"},
+        "tooltip": [
+          {"field": "States", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Rank", "type": "quantitative", "title": "Rank"},
+          {"field": "Count", "type": "quantitative", "title": "Accident Count", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "image", "width": 40, "height": 40},
+      "encoding": {
+        "x": {"field": "Year", "type": "ordinal"},
+        "y": {
+          "field": "Rank", 
+          "type": "quantitative", 
+          "scale": {"reverse": true, "domain": [1, 14]}
+        },
+        "url": {"field": "flagURL", "type": "nominal"},
+        "tooltip": [
+          {"field": "States", "type": "nominal", "title": "State"},
+          {"field": "Year", "type": "ordinal"},
+          {"field": "Rank", "type": "quantitative", "title": "Rank"},
+          {"field": "Count", "type": "quantitative", "title": "Accident Count", "format": ","}
+        ]
+      }
     }
-  },
-  {
-    "mark": {"type": "circle", "size": 700, "color": "white", "stroke": "black", "strokeWidth": 2, "tooltip": null, "interactive": false},
-    "encoding": {
-      "x": {"field": "Year", "type": "ordinal"},
-      "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true}}
-    }
-  },
-  {
-    "mark": {"type": "image", "width": 60, "height": 60},
-    "encoding": {
-      "x": {"field": "Year", "type": "ordinal"},
-      "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true, "domain": [0, 15]}, "title": "Rank (1 = Highest)"},
-      "url": {"field": "flagURL", "type": "nominal"},
-      "tooltip": [
-        {"field": "States"},
-        {"field": "Year"},
-        {"field": "Rank"},
-        {"field": "Count"}
-      ]
-    }
-  }
-],
-"resolve": {
-  "tooltip": "independent"
-},
+  ],
   "title": {
     "text": "State Ranking by Accident Severity (2011–2021)",
     "fontSize": 18,

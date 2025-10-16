@@ -1,131 +1,90 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "Traffic accidents by state and severity in Malaysia (with year filter and zoomed-in view).",
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Rank bump chart of accident severity by state",
+  "width": 900,
+  "height": 500,
   "data": {
-    "url": "https://gist.githubusercontent.com/rqiiiii/807b12c0a23de4f9eb4f3ccb411f8820/raw/7fd3bae1fbe29ae1cbfb617f87611cd94a4b7dd4/road_accident_severity.csv"
+    "url": "https://gist.githubusercontent.com/rqiiiii/807b12c0a23de4f9eb4f3ccb411f8820/raw/47f82169eb38ee9a1f2d8d68b9878c7ee2dec6eb/road_accident_severity.csv",
+    "format": {"type": "csv"}
   },
-  "params": [
+  "transform": [
+    {"filter": "datum.Year >= 2011 && datum.Year <= 2021"},
     {
-      "name": "YearFilter",
-      "value": 2011,
-      "bind": {"input": "range", "min": 2011, "max": 2019, "step": 1}
-    }
-  ],
-  "hconcat": [
-    {
-      "title": "Total Accidents by Severity and State (All Categories)",
-      "transform": [
-        {"calculate": "trim(datum.States)", "as": "CleanState"},
-        {"filter": "datum.Year == YearFilter"},
-        {
-          "fold": [
-            "Fatal Accidents",
-            "Serious Accidents",
-            "Minor Accidents",
-            "Damage-Only Accidents"
-          ],
-          "as": ["Severity", "Accidents"]
-        }
+      "fold": [
+        "Fatal Accidents",
+        "Serious Accidents",
+        "Minor Accidents",
+        "Damage-Only Accidents"
       ],
-      "mark": "bar",
-      "encoding": {
-        "x": {
-          "field": "CleanState",
-          "type": "nominal",
-          "axis": {"labelAngle": -45},
-          "title": "State"
-        },
-        "y": {
-          "aggregate": "sum",
-          "field": "Accidents",
-          "type": "quantitative",
-          "title": "Number of Accidents"
-        },
-        "color": {
-          "field": "Severity",
-          "type": "nominal",
-          "title": "Severity Level",
-          "scale": {
-            "domain": [
-              "Fatal Accidents",
-              "Serious Accidents",
-              "Minor Accidents",
-              "Damage-Only Accidents"
-            ],
-            "range": ["#d73027", "#fc8d59", "#fee090", "#91bfdb"]
-          }
-        },
-        "tooltip": [
-          {"field": "CleanState", "type": "nominal", "title": "State"},
-          {"field": "Severity", "type": "nominal", "title": "Severity"},
-          {
-            "aggregate": "sum",
-            "field": "Accidents",
-            "type": "quantitative",
-            "title": "Accidents"
-          },
-          {"field": "Year", "type": "ordinal", "title": "Year"}
-        ]
-      }
+      "as": ["Severity", "Count"]
     },
     {
-      "title": "Zoomed-In View: Fatal, Serious, and Minor Accidents Only",
-      "transform": [
-        {"calculate": "trim(datum.States)", "as": "CleanState"},
-        {"filter": "datum.Year == YearFilter"},
-        {
-          "fold": [
-            "Fatal Accidents",
-            "Serious Accidents",
-            "Minor Accidents"
-          ],
-          "as": ["Severity", "Accidents"]
-        }
-      ],
-      "mark": "bar",
-      "encoding": {
-        "x": {
-          "field": "CleanState",
-          "type": "nominal",
-          "axis": {"labelAngle": -45},
-          "title": "State"
-        },
-        "y": {
-          "aggregate": "sum",
-          "field": "Accidents",
-          "type": "quantitative",
-          "title": "Number of Accidents (Zoomed)"
-        },
-        "color": {
-          "field": "Severity",
-          "type": "nominal",
-          "title": "Severity Level",
-          "scale": {
-            "domain": [
-              "Fatal Accidents",
-              "Serious Accidents",
-              "Minor Accidents",
-              "Damage-Only Accidents"
-            ],
-            "range": ["#d73027", "#fc8d59", "#fee090", "#91bfdb"]
-          }
-        },
-        "tooltip": [
-          {"field": "CleanState", "type": "nominal", "title": "State"},
-          {"field": "Severity", "type": "nominal", "title": "Severity"},
-          {
-            "aggregate": "sum",
-            "field": "Accidents",
-            "type": "quantitative",
-            "title": "Accidents"
-          },
-          {"field": "Year", "type": "ordinal", "title": "Year"}
-        ]
+      "window": [{"op": "rank", "as": "Rank"}],
+      "sort": [{"field": "Count", "order": "descending"}],
+      "groupby": ["Year", "Severity"]
+    },
+    {"filter": "datum.Severity == severitySelect"},
+    {
+      "calculate": 
+      "datum.States === 'Johor' ? 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_map_of_Malacca.svg/1200px-Flag_map_of_Malacca.svg.png?20200919112754' : datum.States === 'Selangor' ? 'https://seekflag.com/wp-content/uploads/2022/01/Selangor-37.png' : datum.States === 'Kedah' ? 'https://seekflag.com/wp-content/uploads/2022/01/Kedah-37.png' : datum.States === 'Pulau Pinang' ? 'https://seekflag.com/wp-content/uploads/2022/01/Penang-37.png' : datum.States === 'Perak' ? 'https://seekflag.com/wp-content/uploads/2022/01/Perak-37.png' : datum.States === 'Perlis' ? 'https://seekflag.com/wp-content/uploads/2022/01/Perlis-37.png' : datum.States === 'Kelantan' ? 'https://seekflag.com/wp-content/uploads/2022/01/Kelantan-37.png' : datum.States === 'Terengganu' ? 'https://seekflag.com/wp-content/uploads/2022/01/Terengganu-37.png' : datum.States === 'Pahang' ? 'https://seekflag.com/wp-content/uploads/2022/01/Pahang-37.png' : datum.States === 'Melaka' ? 'https://seekflag.com/wp-content/uploads/2022/01/Malacca-37.png' : datum.States === 'Negeri Sembilan' ? 'https://seekflag.com/wp-content/uploads/2022/01/Negeri-Sembilan-37.png' : datum.States === 'Sabah' ? 'https://seekflag.com/wp-content/uploads/2022/01/Sabah-37.png' : datum.States === 'Sarawak' ? 'https://seekflag.com/wp-content/uploads/2022/01/Sarawak-37.png' : datum.States === 'Kuala Lumpur' ? 'https://seekflag.com/wp-content/uploads/2022/01/Kuala-Lumpur-37.png' : datum.States === 'W.P. Labuan' ? 'https://seekflag.com/wp-content/uploads/2022/01/Labuan.png' : datum.States === 'Putrajaya' ? 'https://seekflag.com/wp-content/uploads/2022/01/Putrajaya-37.png' : ''",
+      "as": "flagURL"
+    }
+
+  ],
+  "params": [
+    {
+      "name": "severitySelect",
+      "value": "Fatal Accidents",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Fatal Accidents",
+          "Serious Accidents",
+          "Minor Accidents",
+          "Damage-Only Accidents"
+        ],
+        "name": "Select Severity: "
       }
     }
   ],
-  "config": {
-    "view": {"stroke": "transparent"},
-    "axis": {"labelFontSize": 11, "titleFontSize": 12}
+  "layer": [
+  {
+    "interactive": false,
+    "mark": {"type": "line", "tooltip": null},
+    "encoding": {
+      "x": {"field": "Year", "type": "ordinal", "axis": {"labelAngle": 0, "title": "Year"}},
+      "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true}, "title": "Rank (1 = Highest)"},
+      "color": {"field": "States", "type": "nominal", "legend": {"title": "State", "columns": 2}}
+    }
+  },
+  {
+    "mark": {"type": "circle", "size": 700, "color": "white", "stroke": "black", "strokeWidth": 2, "tooltip": null, "interactive": false},
+    "encoding": {
+      "x": {"field": "Year", "type": "ordinal"},
+      "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true}}
+    }
+  },
+  {
+    "mark": {"type": "image", "width": 60, "height": 60},
+    "encoding": {
+      "x": {"field": "Year", "type": "ordinal"},
+      "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true, "domain": [0, 15]}, "title": "Rank (1 = Highest)"},
+      "url": {"field": "flagURL", "type": "nominal"},
+      "tooltip": [
+        {"field": "States"},
+        {"field": "Year"},
+        {"field": "Rank"},
+        {"field": "Count"}
+      ]
+    }
+  }
+],
+"resolve": {
+  "tooltip": "independent"
+},
+  "title": {
+    "text": "State Ranking by Accident Severity (2011–2021)",
+    "fontSize": 18,
+    "anchor": "start"
   }
 }

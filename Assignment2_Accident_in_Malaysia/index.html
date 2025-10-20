@@ -20,13 +20,20 @@
       box-sizing: border-box;
     }
 
-    body {
+    html, body {
+      width: 100%;
+      overflow-x: hidden; /* prevents side scroll */
       font-family: 'Lato', sans-serif;
+      background: linear-gradient(180deg, #fcfbf7 0%, #f6f3ee 100%);
+      color: #222;
       line-height: 1.5;
     }
 
+    /* ===== HEADER ===== */
     header {
+      position: relative;
       width: 100%;
+      height: 210px;
       overflow: hidden;
     }
 
@@ -37,36 +44,22 @@
       display: block;
     }
 
-    .fullwidth-chart {
-      width: 100%;
-      max-width: 100%; /* full width */
-      height: 600px;   /* taller if needed */
-    }
-
-    header h1 {
-      position: relative;
-      z-index: 1;
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
-      letter-spacing: 1px;
-    }
-
-    header p {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
-      margin: 0 auto;
-      font-size: 1.2rem;
-      opacity: 0.9;
-    }
-
-    /* Reduce top/bottom padding to remove gaps */
+    /* ===== MAIN CONTENT ===== */
     main {
-      padding: 30px 10%; /* reduced from 60px */
+      padding: 40px 10%;
       display: flex;
       flex-direction: column;
-      gap: 0px; /* reduced from 80px */
-      background: linear-gradient(180deg, #fcfbf7 0%, #f6f3ee 100%);
+      gap: 60px;
+      align-items: center; /* center everything inside main */
+    }
+
+    .story-text {
+      font-size: 1.3rem;
+      text-align: justify;
+      margin: 0 auto;
+      max-width: 1000px;
+      line-height: 1.6;
+      color: #333;
     }
 
     h2 {
@@ -75,176 +68,179 @@
       border-left: 5px solid #003a79;
       padding-left: 15px;
       color: #222;
-      margin: 15px 0 10px 0; /* smaller bottom margin */
-      text-align: center; /* center the header */
+      margin: 10px auto 15px;
+      text-align: center;
+      width: fit-content;
     }
 
-    .h2-desc {
-      font-family: 'Lato', sans-serif;
+    .chart-text {
       font-size: 1rem;
-      color: #555;
-      text-align: center; /* center description text */
+      text-align: center;
+      color: #444;
+      max-width: 900px;
+      margin: 10px auto 20px;
     }
 
-
-    .story-text {
-      font-size: 1.5rem;
-      column-count: 1;
-      column-gap: 40px;
-      text-align: justify;
-      margin-bottom: 30px;
-      line-height: 1.5; /* reduce vertical spacing */
-    }
-
-
-    .worldmap, .chart, .choroplethmap, .bump, .chart-placeholder, .fullwidth-chart {
-      margin-top: 0;   /* remove default top margin */
-      padding-top: 0;  /* remove any top padding */
-    }
-
-    .worldmap,
-    .chart {
+    /* ==== Chart Containers Centered ==== */
+    .chart-placeholder, 
+    .worldmap, 
+    .choroplethmap, 
+    .bump {
       width: 100%;
+      max-width: 1100px;
       height: 550px;
-      max-width: 100%;
+      display: flex;
+      justify-content: center; /* horizontally center chart content */
+      align-items: center;
+      margin: 0 auto;
     }
 
-    /* .choroplethmap,
-    .chart {
-      width: 100%;
-      height: 550px;
-      max-width: 100%;
-    } */
-
-    .chart-section {
-      display: column;
-      justify-content: center; /* horizontally center the whole section */
-      gap: 0;                  /* remove gap between chart and text */
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-
-    .chart-section .chart-text {
-      flex: 1;
-      min-width: 300px;
-      font-size: 1rem;
-      color: #333;
-      margin: 0;               /* remove extra margins */
-    }
-
+    /* For two-column section */
     .charts-row {
       display: flex;
-      gap: 30px;          /* space between the two charts */
-      flex-wrap: wrap;     /* allow stacking on smaller screens */
-      justify-content: center; /* center the row */
+      flex-wrap: wrap;
+      gap: 40px;
+      justify-content: center;
+      align-items: flex-start;
     }
 
     .chart-column {
-      flex: 1;
-      min-width: 450px;   /* ensures each column has a minimum width */
-    }
-
-
-
-    .quote {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: #007bff;
       text-align: center;
-      border-left: 4px solid #007bff;
-      background: #f9fbff;
-      margin: 40px 0;
-      border-radius: 6px;
     }
 
+    /* specifically target the left and right columns */
+    .chart-column:first-child {
+      flex: 0 0 60%;   /* 👈 left chart takes 60% of the row */
+      max-width: 700px;
+    }
+
+    .chart-column:last-child {
+      flex: 0 0 35%;   /* 👈 right chart takes 35% */
+      max-width: 500px;
+    }
+
+    /* .chart-column {
+      flex: 1;
+      min-width: 450px;
+      max-width: 600px;
+      text-align: center; /* centers header and text within column */
+    
+
+
+    .chart-column h2 {
+      text-align: center;
+      border-left: none;
+      border-bottom: 3px solid #003a79;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    /* ===== FOOTER ===== */
     footer {
       text-align: center;
       background: #222;
       color: #f5f5f5;
       padding: 25px;
       font-size: 0.9rem;
+      margin-top: 40px;
+      width: 100%;
     }
 
-    @media (max-width: 900px) {
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 1000px) {
+      main {
+        padding: 30px 5%;
+        gap: 40px;
+      }
+
+      header {
+        height: 300px;
+      }
+
+      h2 {
+        font-size: 1.8rem;
+      }
+
       .story-text {
-        column-count: 1;
+        font-size: 1.1rem;
       }
-      header h1 {
-        font-size: 2.4rem;
+
+      .chart-placeholder, .worldmap, .choroplethmap, .bump {
+        height: 450px;
       }
-      .chart-section {
-        flex-direction: column;
-        gap: 15px;
-        margin-bottom: 30px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        height: 250px;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .chart-text {
+        font-size: 0.95rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="data/image/Accident_in_Malaysia_header.png" alt="Road Accidents in Malaysia" class="banner-img">
+    <img src="data/image/Malaysia_accident_header.png" alt="Road Accidents in Malaysia" class="banner-img">
   </header>
 
   <main>
     <div class="story-text">
-      Malaysia’s road networks are among the busiest in Southeast Asia, connecting millions of people daily. Yet behind this activity lies a worrying reality — road accidents remain a significant public health concern. This feature     presents interactive insights into accident trends, vehicle types, and regional risks.
+      Malaysia’s road networks are among the busiest in Southeast Asia, connecting millions of people daily. Yet behind this activity lies a worrying reality — road accidents remain a significant public health concern. This feature presents interactive insights into accident trends, vehicle types, and regional risks.
     </div>
 
-    <!-- Choropleth Map -->
+    <!-- World Map -->
+    <section>
       <h2>Estimated Road Traffic Death Rate by Country (2021)</h2>
-        <div class="chart-text">
-          A global perspective on road traffic fatalities reveals that Libya and Guinea have the highest death rates, while Malaysia sits near the regional average.
-        </div>
-        <div id="worldmap" class="worldmap"></div>
-        </div>
-
+      <div class="chart-text">
+        A global perspective on road traffic fatalities reveals that Libya and Guinea have the highest death rates, while Malaysia sits near the regional average.
+      </div>
+      <div id="worldmap" class="worldmap"></div>
+    </section>
 
     <!-- Choropleth Map -->
-    <h2>Road Accident Rates in Malaysia by State (2011–2021)</h2>
-    <div class="chart-section">
+    <section>
+      <h2>Road Accident Rates in Malaysia by State (2011–2021)</h2>
       <div class="chart-text">
         Across the years, Kuala Lumpur consistently records the highest number of road accidents, with darker shades indicating higher incident counts. In 2021, accident numbers dropped across all states, likely reflecting the impact of COVID-19 lockdowns.
-      </div>
-      <div><strong>📍Interactive:</strong> Use the slider to select different years and compare accident rankings across Malaysian states.
+        <br><strong>📍Interactive:</strong> Use the slider to select different years and compare accident rankings across Malaysian states.
       </div>
       <div id="choroplethmap" class="choroplethmap"></div>
-    </div>
+    </section>
 
-    <!-- Severity Bump Chart -->
-    <h2>Malaysian State Ranking by Accident Severity (2011-2021)</h2>
-    <div class="chart-section">
+    <!-- Bump Chart -->
+    <section>
+      <h2>Malaysian State Ranking by Accident Severity (2011–2021)</h2>
       <div class="chart-text">
-        Malaysian states are ranked from 2011 to 2021 based on the number of road accidents by severity. Higher ranks indicate states with more accidents for the selected severity. You can interactively select different severity levels to compare patterns and trends across states over the years.
+        Malaysian states are ranked based on accident severity from 2011 to 2021. Higher ranks indicate more severe accidents for the selected type.
+        <br><strong>📍Interactive:</strong> Use the dropdown to select different severities and compare trends.
       </div>
-      <div><strong>📍Interactive:</strong> Use the dropdown to select different accident severities and compare their rankings across Malaysian states.</div>
-      <div id="bump" class="chart-section"></div>
-    </div>
+      <div id="bump" class="bump"></div>
+    </section>
 
-    <!-- Container for both charts -->
-    <div class="charts-row">
-      <!-- First Chart Column -->
-      <div class="chart-column">
-        <h2>Accident Causes by Road User Type (2000-2019)</h2>
-        <div class="chart-section">
-          <div id="donut" class="chart-placeholder"></div>
-          <div class="chart-text">
-            This donut chart shows the proportion of injuries by vehicle type in 2011, highlighting motorcycles as the most affected.
-          </div>
-        </div>
+    <section>
+      <h2>Victims Over Time: Deaths vs Injuries (2001–2019)</h2>
+      <div class="chart-text">
+       While injuries dropped in 2006, they still remain much higher than deaths. Motorcyclists are the most affected, highlighting their high risk on Malaysian roads.
+      <br><strong>📍Interactive:</strong> Use the slider to filter by year.
       </div>
+      <div id="areastack"></div>
+    </section>
 
-      <!-- Second Chart Column -->
-      <div class="chart-column">
-        <h2>Victims Over Time: Deaths vs Injuries (2001-2019)</h2>
-        <div class="chart-section">
-          <div id="areastack" class="chart-placeholder"></div>
-          <div class="chart-text">
-            This area chart shows how deaths and injuries have changed over time, allowing for quick trend comparisons and insight into accident patterns.
-          </div>
-        </div>
+    <section>
+      <h2>Accident Causes by Road User Type (2000–2019)</h2>
+      <div class="chart-text">
+       Motorcycles were responsible for the largest share of accidents consistently contributed the most to accidents over the years.
+      <br><strong>📍Interactive:</strong> Use the slider to filter by year.
       </div>
-    </div>
-
+      <div id="donut" class="chart-placeholder"></div>
+    </section>
   </main>
 
   <footer>

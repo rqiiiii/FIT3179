@@ -1,7 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 2000,    
-  "height": 900,       
+  "width": 1000,        
   "data": {
     "url": "https://gist.githubusercontent.com/rqiiiii/f7868af7c80ac82caa6536d1045301e0/raw/44203f0a2d9f419084edebcc2a34f7a9a1b69034/2000-2021%2520Number%2520of%2520deaths%2520and%2520injuries%2520in%2520road%2520ac.csv"
   },
@@ -36,6 +35,8 @@
   },
 
   "spec": {
+    "width": 390,        
+    "height": 400 ,
     "layer": [
       {
         "mark": {"type": "area", "interpolate": "monotone"},
@@ -50,9 +51,33 @@
           "color": {
             "field": "Type of road user",
             "type": "nominal",
-            "scale": {"scheme": "set2"},
-            "title": "Road User"
-          },
+            "title": "Road User",
+            "scale": {
+              "domain": [
+                "Cyclists",
+                "Lorry drivers",
+                "Motorcar drivers",
+                "Motorcyclists",
+                "Others",
+                "Passengers",
+                "Pedestrians",
+                "Pillion riders",
+                "Taxi/Bus drivers"
+              ],
+              "range": [
+                "#66c2a5",
+                "#fc8d62",
+                "#8da0cb",
+                "#e78ac3",
+                "#a6d854",
+                "#ffd92f",
+                "#e5c494",
+                "#b3b3b3",
+                "#6a1ea8"
+              ]
+            }
+          }
+          ,
           "tooltip": [
             {"field": "Year", "type": "temporal", "format": "%Y"},
             {"field": "Type of road user", "type": "nominal"},
@@ -104,11 +129,12 @@
           {"filter": "datum.Condition == 'Deaths'"},
           {"filter": "year(datum.Year) <= endYear"}
         ],
-        "mark": {"type": "rule", "color": "red", "strokeWidth": 2},
+        "mark": {"type": "rule", "color": "black", "strokeWidth": 2},
         "encoding": {
           "x": {"field": "Year", "type": "temporal"}
         }
       }   
     ]
   }
+  
 }

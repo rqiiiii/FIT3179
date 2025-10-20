@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Interactive pie chart of road accident injuries by vehicle type by year (no text labels).",
-  "width": 600,
+  "width": 850,
   "height": 400,
 
   "params": [
@@ -38,9 +38,33 @@
     "color": {
       "field": "Type of Vehicle",
       "type": "nominal",
-      "title": "Vehicle Type",
-      "legend": {"orient": "right"}
-    },
+      "title": "Road User",
+      "scale": {
+        "domain": [
+          "Bicycle",
+          "Trailer/Lorry",
+          "Motorcar",
+          "Motorcycle",
+          "Others",
+          "Pedestrian",
+          "Bus",
+          "Jeep",
+          "Vans"
+        ],
+        "range": [
+          "#66c2a5",
+          "#fc8d62",
+          "#8da0cb",
+          "#e78ac3",
+          "#a6d854",
+          "#e5c494",
+          "#6a1ea8",
+          "#1e6aa8",
+          "#65a81e"
+        ]
+      }
+    }
+    ,
     "tooltip": [
       {"field": "Type of Vehicle", "title": "Vehicle"},
       {"field": "TotalInjuries", "title": "Injuries"},

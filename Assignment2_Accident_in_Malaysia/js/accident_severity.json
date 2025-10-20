@@ -58,7 +58,7 @@
   "params": [
     {
       "name": "severitySelect",
-      "value": "Fatal Accidents",
+      "value": "Damage-Only Accidents",
       "bind": {
         "input": "select",
         "options": [

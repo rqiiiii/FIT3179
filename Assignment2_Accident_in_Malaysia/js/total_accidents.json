@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "Road Accident Rates in Malaysia by State (2011–2021)",
   "width": 1200,
-  "height": 520,
+  "height": 600,
   "background": "#e6f2ff", 
   "autosize": {"type": "fit", "contains": "padding"},
 

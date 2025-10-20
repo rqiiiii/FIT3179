@@ -1,3 +1,8 @@
+var spec5 = "js/world_accident_death_rate.json";
+vegaEmbed('#worldmap', spec5).then(function(result) {
+    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
+}).catch(console.error);
+
 var spec1 = "js/accident_injuries_roaduser.json";
 vegaEmbed('#donut', spec1, {
   actions: false,   // hide "Open in Vega Editor" buttons
@@ -21,7 +26,3 @@ vegaEmbed('#areastack', spec4, {
   renderer: 'canvas'
 }).catch(console.error);
 
-var spec5 = "js/world_accident_death_rate.json";
-vegaEmbed('#worldmap', spec5).then(function(result) {
-    // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
-}).catch(console.error);

@@ -3,6 +3,7 @@ vegaEmbed('#worldmap', spec5).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
 }).catch(console.error);
 
+
 var spec1 = "js/accident_injuries_roaduser.json";
 vegaEmbed('#donut', spec1, {
   actions: false,   // hide "Open in Vega Editor" buttons
@@ -16,8 +17,7 @@ vegaEmbed('#choroplethmap', spec2).then(function(result) {
 
 var spec3 = "js/accident_severity.json";
 vegaEmbed('#bump', spec3, {
-  actions: false,   // hide "Open in Vega Editor" buttons
-  renderer: 'canvas'
+  title: null
 }).catch(console.error);
 
 var spec4 = "js/accident_condition.json";

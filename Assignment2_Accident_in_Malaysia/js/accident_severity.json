@@ -1,9 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "description": "Malaysian State Ranking by Accident Severity (2011-2021)",
-  "width": 900,
-  "height": 600,
-  "padding": 20,
+  "width": 1275,
+  "height": 500,
   "background": "#fafafa",
   "data": {
     "url": "https://gist.githubusercontent.com/rqiiiii/807b12c0a23de4f9eb4f3ccb411f8820/raw/47f82169eb38ee9a1f2d8d68b9878c7ee2dec6eb/road_accident_severity.csv",
@@ -73,6 +71,177 @@
   ],
   "layer": [
     {
+            "data": {
+        "values": [
+          {
+            "Severity": "Fatal Accidents",
+            "Line1": "🚨 Fatal accidents",
+            "Line2": "are the most severe,",
+            "Line3": "resulting in loss of ",
+            "Line4": "life and serious ",
+            "Line5": "consequences,",
+            "Line6": "highlighting",
+            "Line7": "critical road safety."
+          },
+          {
+            "Severity": "Serious Accidents",
+            "Line1": "⚠️ Serious accidents",
+            "Line2": "cause major injuries,",
+            "Line3": "varying in frequency ",
+            "Line4": "across different roads,",
+            "Line5": "reflecting differences",
+            "Line6": "in infrastructure and",
+            "Line7": "response."
+          },
+          {
+            "Severity": "Minor Accidents",
+            "Line1": "🚗 Minor accidents",
+            "Line2": "mostly cause vehicle",
+            "Line3": "or property damage,",
+            "Line4": "rarely result in ",
+            "Line5": "serious injuries,",
+            "Line6": " and have relatively ",
+            "Line7": "low costs."
+          },
+          {
+            "Severity": "Damage-Only Accidents",
+            "Line1": "💥 Damage-only accidents",
+            "Line2": "involve collisions that",
+            "Line3": "cause vehicle or property",
+            "Line4": "damage without injuries,",
+            "Line5": "typically resulting",
+            "Line6": "from minor incidents. ",
+            "Line7": " "
+          }
+        ]
+      },
+"transform": [
+        {"filter": "datum.Severity == severitySelect"}
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "x": 1280,
+            "y": 150,
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "color": "#333333"
+          },
+          "encoding": {
+            "text": {"field": "Line1", "type": "nominal"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "x": 1305,
+            "y": 170,
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "color": "#333333"
+          },
+          "encoding": {
+            "text": {"field": "Line2", "type": "nominal"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "x": 1305,
+            "y": 190,
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "color": "#333333"
+          },
+          "encoding": {
+            "text": {"field": "Line3", "type": "nominal"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "x": 1305,
+            "y": 210,
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "color": "#333333"
+          },
+          "encoding": {
+            "text": {"field": "Line4", "type": "nominal"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "x": 1305,
+            "y": 230,
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "color": "#333333"
+          },
+          "encoding": {
+            "text": {"field": "Line5", "type": "nominal"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "x": 1305,
+            "y": 250,
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "color": "#333333"
+          },
+          "encoding": {
+            "text": {"field": "Line6", "type": "nominal"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "x": 1305,
+            "y": 270,
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "color": "#333333"
+          },
+          "encoding": {
+            "text": {"field": "Line7", "type": "nominal"}
+          }
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "top",
+        "dx": 10,
+        "dy": 10,
+        "fontSize": 14,
+        "fontWeight": "bold",
+        "color": "#333333",
+        "lineHeight": 40,
+        "limit": 300
+      },
+      "encoding": {
+        "text": {"field": "Annotation", "type": "nominal"}
+      }
+    },
+    {
       "mark": {"type": "line", "strokeWidth": 2, "opacity": 0.9},
       "encoding": {
         "x": {
@@ -123,8 +292,21 @@
         ]
       }
     },
-    { "mark": {"type": "circle", "size": 700, "color": "white", "stroke": "black", "strokeWidth": 2, "tooltip": null, "interactive": false}, "encoding": { "x": {"field": "Year", "type": "ordinal"}, "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true}} } }
-    ,
+    { 
+      "mark": {
+        "type": "circle", 
+        "size": 700, 
+        "color": "white", 
+        "stroke": "black", 
+        "strokeWidth": 2, 
+        "tooltip": null, 
+        "interactive": false
+      }, 
+      "encoding": { 
+        "x": {"field": "Year", "type": "ordinal"}, 
+        "y": {"field": "Rank", "type": "quantitative", "scale": {"reverse": true}} 
+      } 
+    },
     {
       "mark": {
         "type": "image",
@@ -152,11 +334,5 @@
   "config": {
     "view": {"stroke": "transparent"},
     "axis": {"domainWidth": 1}
-  },
-  "title": {
-    "text": "Malaysian State Ranking by Accident Severity (2011–2021)",
-    "fontSize": 18,
-    "anchor": "start",
-    "offset": 10
   }
 }

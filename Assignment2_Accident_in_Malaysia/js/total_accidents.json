@@ -1,10 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Road Accident Rates in Malaysia by State (2011–2021)",
-  "width": 1200,
+  "width": 1500,
   "height": 600,
-  "background": "#e6f2ff", 
-  "autosize": {"type": "fit", "contains": "padding"},
+  "background": "#ffffff", 
+  "autosize": {"type": "fit"},
 
   "params": [
     {
@@ -73,11 +72,17 @@
           "field": "Accident Rate",
           "type": "quantitative",
           "scale": {
-                        "domain": [0, 15, 30, 40],
-            "range": ["#ffcccc", "#ff6666", "#b30000"]
+            "type": "threshold",
+            "domain": [10, 20, 30],
+            "range": ["#fcbba1", "#fc9272", "#fb6a4a", "#cb181d"]
             },
           "legend": {
-            "title": "Accident Rate (per 1,000 population)",
+            "orient": "bottom",
+            "offset": 8,
+            "direction": "horizontal",
+            "columns": 4,
+            "titleAnchor": "middle",
+            "title": "Accident per 1,000 population",
             "titleFontSize": 14,
             "labelFontSize": 11,
             "gradientLength": 300
@@ -115,12 +120,12 @@
         "fontSize": 14,
         "fontWeight": "bold",
         "font": "Poppins",
-        "fill": "#000000",
+        "fill": "#cd1111",
         "align": "left"
       },
       "encoding": {
         "x": {"value": 10},
-        "y": {"value": 20}
+        "y": {"value": 30}
       }
     }
   ]

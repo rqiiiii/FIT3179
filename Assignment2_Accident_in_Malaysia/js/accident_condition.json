@@ -1,6 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "width": 1200,
+  "width": 2000,    
+  "height": 900,       
   "data": {
     "url": "https://gist.githubusercontent.com/rqiiiii/f7868af7c80ac82caa6536d1045301e0/raw/44203f0a2d9f419084edebcc2a34f7a9a1b69034/2000-2021%2520Number%2520of%2520deaths%2520and%2520injuries%2520in%2520road%2520ac.csv"
   },
@@ -26,13 +27,12 @@
   "facet": {
     "field": "Condition",
     "type": "nominal",
-    "title": "Deaths VS Injuries by Road User",
     "header": {
       "labelFontSize": 18,
       "titleFontSize": 22,
       "labelFontWeight": "bold"
     },
-    "spacing": 150   
+    "spacing": 200       
   },
 
   "spec": {
@@ -72,8 +72,10 @@
             }
           ]
         },
-        "transform": [{"filter": "datum.Condition == 'Injuries'"},
-                      {"filter": "year(datum.Year) <= endYear"}],
+        "transform": [
+          {"filter": "datum.Condition == 'Injuries'"},
+          {"filter": "year(datum.Year) <= endYear"}
+        ],
         "mark": {
           "type": "text",
           "align": "left",
@@ -88,7 +90,6 @@
           "text": {"field": "Label"}
         }
       },
-
       {
         "data": {
           "values": [
@@ -99,8 +100,10 @@
             }
           ]
         },
-        "transform": [{"filter": "datum.Condition == 'Deaths'"},
-                      {"filter": "year(datum.Year) <= endYear"} ],
+        "transform": [
+          {"filter": "datum.Condition == 'Deaths'"},
+          {"filter": "year(datum.Year) <= endYear"}
+        ],
         "mark": {"type": "rule", "color": "red", "strokeWidth": 2},
         "encoding": {
           "x": {"field": "Year", "type": "temporal"}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Estimated Road Traffic Death Rate by Country (2021)",
+  "width": "container",
+  "height": 470,
+  "projection": { "type": "equalEarth" },
+  "config": { "view": { "stroke": null } },
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/rqiiiii/FIT3179/refs/heads/main/Assignment2_Accident_in_Malaysia/js/ne_10m_admin_0_countries.json",
+    "format": { "type": "topojson", "feature": "ne_10m_admin_0_countries" }
+  },
+
+  "transform": [
+    {
+      "lookup": "properties.ISO_A2",
+      "from": {
+        "data": {
+          "url": "https://gist.githubusercontent.com/rqiiiii/8d732d8696bd3ed347bcc7f22830a8da/raw/0ab5cbfa14b729e6994cc3173495ec14496bc911/road_death_country_2021.csv"
+        },
+        "key": "flagCode",
+        "fields": ["EstimatedRoadTrafficDeathRateCountries_2021"]
+      }
+    }
+  ],
+
+  "mark": {
+    "type": "geoshape",
+    "stroke": "white",
+    "strokeWidth": 0.5
+  },
+
+  "encoding": {
+    "color": {
+      "field": "EstimatedRoadTrafficDeathRateCountries_2021",
+      "type": "quantitative",
+      "title": "Deaths per 100,000",
+      "scale": {
+        "type": "threshold",
+        "domain": [5, 10, 20, 30],
+        "range": ["#edf8e9", "#bae4b3", "#74c476", "#238b45", "#00441b"]
+      },
+      "legend": {
+        "orient": "bottom",
+        "offset": 8,
+        "direction": "horizontal",
+        "columns": 4,
+        "titleAnchor": "middle"
+      }
+    },
+    "tooltip": [
+      { "field": "properties.NAME", "title": "Country" },
+      {
+        "field": "EstimatedRoadTrafficDeathRateCountries_2021",
+        "title": "Death Rate (per 100,000)"
+      }
+    ]
+  }
+}

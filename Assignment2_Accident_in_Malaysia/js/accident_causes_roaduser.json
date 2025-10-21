@@ -93,7 +93,7 @@
       "encoding": {
         "x": {"datum": 2012},
         "x2": {"datum": 2020},
-        "y": {"datum": 44000},
+        "y": {"datum": 41000},
         "y2": {"datum": 50000}
       }
     },
@@ -109,7 +109,7 @@
         "data": {"values": [{}]},
       "encoding": {
         "x": {"datum": 2012.2},
-        "y": {"datum": 49000},
+        "y": {"datum": 48000},
         "text": {"value": "🏍️ Motorcycles cause the most injuries each year"}
       }
     },
@@ -124,7 +124,7 @@
         "data": {"values": [{}]},
       "encoding": {
         "x": {"datum": 2012.7},
-        "y": {"datum": 47000},
+        "y": {"datum": 46000},
         "text": {"value": "due to high usage and limited protection,"}
       }
     },
@@ -139,7 +139,7 @@
         "data": {"values": [{}]},
       "encoding": {
         "x": {"datum": 2012.7},
-        "y": {"datum": 45000},
+        "y": {"datum": 44000},
         "text": {"value": "increasing accident risks on Malaysian roads."}
       }
     }

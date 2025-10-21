@@ -76,9 +76,9 @@
         }
         ,
         "tooltip": [
-          {"field": "YearNum", "title": "Year"},
-          {"field": "Type of Vehicle", "title": "Vehicle Type"},
-          {"field": "TotalInjuries", "title": "Number of Accidents", "format": ","}
+          {"field": "YearNum", "title": "Year :"},
+          {"field": "Type of Vehicle", "title": "Vehicle Type :"},
+          {"field": "TotalInjuries", "title": "Number of Accidents :", "format": ","}
         ]
       }
     },

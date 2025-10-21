@@ -74,7 +74,7 @@
           "scale": {
             "type": "threshold",
             "domain": [10, 25, 40],
-            "range": ["#fc9272", "#fb6a4a", "#cb181d","#730e11"]
+            "range": ["#f7b072", "#f05030", "#f20c0c", "#a60707"]
             },
           "legend": {
             "title": "Accident per 1,000 population",

@@ -46,7 +46,7 @@
     },
     {
             "data": {
-              "url": "https://gist.githubusercontent.com/rqiiiii/19c51658dd8e38204c47e0978d922209/raw/28ad48dca7f48d83cc39ca0ccd1900347b2c5930/malaysia_accidents.csv",
+              "url": "data/malaysia_accidents.csv",
               "format": {"type": "csv"}
             },
           "transform": [
@@ -83,10 +83,10 @@
           }
         },
         "tooltip": [
-          {"field": "States", "type": "nominal", "title": "State"},
-          {"field": "Year", "type": "ordinal"},
-          {"field": "Total Accidents", "type": "quantitative"},
-          {"field": "Accident Rate", "type": "quantitative", "format": ".2f"}
+          {"field": "States", "type": "nominal", "title": "State :"},
+          {"field": "Year", "type": "ordinal", "title": "Year :"},
+          {"field": "Total Accidents", "type": "quantitative", "title": "Number of Accidents :"},
+          {"field": "Accident Rate", "type": "quantitative","title": "Accident Rate :", "format": ".2f"}
         ]
       }
     },

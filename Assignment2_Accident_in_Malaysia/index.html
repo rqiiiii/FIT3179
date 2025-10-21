@@ -8,182 +8,13 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
 
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+
   <!-- Vega Libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@6"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@6"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      width: 100%;
-      overflow-x: hidden; /* prevents side scroll */
-      font-family: 'Lato', sans-serif;
-      background: linear-gradient(180deg, #fcfbf7 0%, #f6f3ee 100%);
-      color: #222;
-      line-height: 1.5;
-    }
-
-    /* ===== HEADER ===== */
-    header {
-      position: relative;
-      width: 100%;
-      height: 210px;
-      overflow: hidden;
-    }
-
-    .banner-img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* ===== MAIN CONTENT ===== */
-    main {
-      padding: 40px 10%;
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-      align-items: center; /* center everything inside main */
-    }
-
-    .story-text {
-      font-size: 1.3rem;
-      text-align: justify;
-      margin: 0 auto;
-      max-width: 1000px;
-      line-height: 1.6;
-      color: #333;
-    }
-
-    h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      border-left: 5px solid #003a79;
-      padding-left: 15px;
-      color: #222;
-      margin: 10px auto 15px;
-      text-align: center;
-      width: fit-content;
-    }
-
-    .chart-text {
-      font-size: 1rem;
-      text-align: center;
-      color: #444;
-      max-width: 900px;
-      margin: 10px auto 20px;
-    }
-
-    /* ==== Chart Containers Centered ==== */
-    .chart-placeholder, 
-    .worldmap, 
-    .choroplethmap, 
-    .bump {
-      width: 100%;
-      max-width: 1100px;
-      height: 550px;
-      display: flex;
-      justify-content: center; /* horizontally center chart content */
-      align-items: center;
-      margin: 0 auto;
-    }
-
-    /* For two-column section */
-    .charts-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      justify-content: center;
-      align-items: flex-start;
-    }
-
-    .chart-column {
-      text-align: center;
-    }
-
-    /* specifically target the left and right columns */
-    .chart-column:first-child {
-      flex: 0 0 60%;   /* 👈 left chart takes 60% of the row */
-      max-width: 700px;
-    }
-
-    .chart-column:last-child {
-      flex: 0 0 35%;   /* 👈 right chart takes 35% */
-      max-width: 500px;
-    }
-
-    /* .chart-column {
-      flex: 1;
-      min-width: 450px;
-      max-width: 600px;
-      text-align: center; /* centers header and text within column */
-    
-
-
-    .chart-column h2 {
-      text-align: center;
-      border-left: none;
-      border-bottom: 3px solid #003a79;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-
-    /* ===== FOOTER ===== */
-    footer {
-      text-align: center;
-      background: #222;
-      color: #f5f5f5;
-      padding: 25px;
-      font-size: 0.9rem;
-      margin-top: 40px;
-      width: 100%;
-    }
-
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 1000px) {
-      main {
-        padding: 30px 5%;
-        gap: 40px;
-      }
-
-      header {
-        height: 300px;
-      }
-
-      h2 {
-        font-size: 1.8rem;
-      }
-
-      .story-text {
-        font-size: 1.1rem;
-      }
-
-      .chart-placeholder, .worldmap, .choroplethmap, .bump {
-        height: 450px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        height: 250px;
-      }
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      .chart-text {
-        font-size: 0.95rem;
-      }
-    }
-  </style>
 </head>
 <body>
   <header>
@@ -244,7 +75,18 @@
   </main>
 
   <footer>
-    <p>Created by Gan Ruiqi | FIT3179 Data Visualisation (2025)</p>
+    <p>
+      Created by <strong>Gan Ruiqi (33521204)</strong> | FIT3179 Data Visualisation (21/10/2025)
+    </p>
+
+    <p>
+      <span>Data Sources:</span><br>
+      <a href="https://archive.data.gov.my/data/ms_MY/dataset/number-of-road-accidents-reported-by-type-of-vehicle-malaysia/resource/1d7a29e0-05ff-42a3-9f6b-ac6ef3dd0cc3" target="_blank">OpenDOSM – Accidents by Vehicle Type</a> |
+      <a href="https://archive.data.gov.my/data/dataset/number-of-deaths-and-injuries-in-road-accidents-reported-by-type-of-road-user-malaysia" target="_blank">OpenDOSM – Deaths & Injuries by Road User</a> |
+      <a href="https://worldpopulationreview.com/country-rankings/road-deaths-by-country" target="_blank">World Population Review – Road Deaths by Country</a> |
+      <a href="https://archive.data.gov.my/data/en_US/dataset/statistik-kemalangan-jalan-raya-mengikut-jenis-kemalangan-dan-kecederaan/resource/47bccf39-4871-4cb7-a189-15d22b226386" target="_blank">OpenDOSM – Accident Severity</a> |
+      <a href="https://data.gov.my/data-catalogue/population_malaysia" target="_blank">OpenDOSM – Malaysia Population</a>
+    </p>
   </footer>
 
   <script src="js/vega_lite_vis.js"></script>

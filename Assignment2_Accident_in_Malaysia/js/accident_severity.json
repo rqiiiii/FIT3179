@@ -2,9 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "width": 700,
   "height": 450,
-  "background": "#fafafa",
   "data": {
-    "url": "https://gist.githubusercontent.com/rqiiiii/807b12c0a23de4f9eb4f3ccb411f8820/raw/47f82169eb38ee9a1f2d8d68b9878c7ee2dec6eb/road_accident_severity.csv",
+    "url": "data/road_accident_severity.csv",
     "format": {"type": "csv"}
   },
   "transform": [
@@ -323,10 +322,10 @@
         },
         "url": {"field": "flagURL", "type": "nominal"},
         "tooltip": [
-          {"field": "States", "type": "nominal", "title": "State"},
-          {"field": "Year", "type": "ordinal"},
-          {"field": "Rank", "type": "quantitative", "title": "Rank"},
-          {"field": "Count", "type": "quantitative", "title": "Accident Count", "format": ","}
+          {"field": "States", "type": "nominal", "title": "State :"},
+          {"field": "Year", "type": "ordinal", "title": "Year :"},
+          {"field": "Rank", "type": "quantitative", "title": "Rank :"},
+          {"field": "Count", "type": "quantitative", "title": "Number of Accidents :", "format": ","}
         ]
       }
     }

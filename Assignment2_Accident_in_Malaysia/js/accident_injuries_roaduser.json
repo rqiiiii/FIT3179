@@ -1,78 +1,121 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "description": "Interactive pie chart of road accident injuries by vehicle type by year (no text labels).",
+  "description": "Interactive line chart with adjustable Y-axis zoom and annotation about motorcycle injuries (legend and colors fixed).",
   "width": 850,
-  "height": 500,
+  "height": 450,
+
+  "data": {
+    "url": "data/accident_injuries_roaduser.csv",
+    "format": {"type": "csv"}
+  },
 
   "params": [
     {
-      "name": "YearFilter",
-      "value": 2019,
+      "name": "yMax",
+      "value": 50000,
       "bind": {
         "input": "range",
-        "min": 2000,
-        "max": 2019,
-        "step": 1,
-        "name": "Select Year: "
+        "min": 1000,
+        "max": 50000,
+        "step": 3000,
+        "name": "Y-Axis (zoom): "
       }
     }
   ],
 
-  "data": {
-    "url": "https://gist.githubusercontent.com/rqiiiii/bb90ab292705f2b15fb99fa0ee02e205/raw/12ae48c07aef2d276eaefcfcda78c886756a8ee5/accident_injuries_roaduser.csv",
-    "format": {"type": "csv"}
-  },
-
   "transform": [
-    {"filter": "datum.Year == YearFilter"},
+    {
+      "calculate": "toNumber(datum.Year)",
+      "as": "YearNum"
+    },
     {
       "aggregate": [
         {"op": "sum", "field": "Value", "as": "TotalInjuries"}
       ],
-      "groupby": ["Type of Vehicle"]
+      "groupby": ["YearNum", "Type of Vehicle"]
     }
   ],
 
-  "encoding": {
-    "theta": {"field": "TotalInjuries", "type": "quantitative"},
-    "color": {
-      "field": "Type of Vehicle",
-      "type": "nominal",
-      "title": "Road User",
-      "scale": {
-        "domain": [
-          "Bicycle",
-          "Trailer/Lorry",
-          "Motorcar",
-          "Motorcycle",
-          "Others",
-          "Pedestrian",
-          "Bus",
-          "Jeep",
-          "Vans"
-        ],
-        "range": [
-          "#66c2a5",
-          "#fc8d62",
-          "#8da0cb",
-          "#e78ac3",
-          "#a6d854",
-          "#e5c494",
-          "#6a1ea8",
-          "#1e6aa8",
-          "#65a81e"
+  "layer": [
+    {
+      "mark": {"type": "line", "point": true},
+      "encoding": {
+        "x": {
+          "field": "YearNum",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {"format": "d", "tickCount": 8}
+        },
+        "y": {
+          "field": "TotalInjuries",
+          "type": "quantitative",
+          "title": "Total Injuries",
+          "scale": {"domain": [0, {"expr": "yMax"}]}
+        },
+        "color": {
+          "field": "Type of Vehicle",
+          "type": "nominal",
+          "title": "Road User",
+          "scale": {
+            "domain": [
+              "Bicycle",
+              "Trailer/Lorry",
+              "Motorcar",
+              "Motorcycle",
+              "Others",
+              "Pedestrian",
+              "Bus",
+              "Jeep",
+              "Vans"
+            ],
+            "range": [
+              "#66c2a5",
+              "#fc8d62",
+              "#8da0cb",
+              "#e78ac3",
+              "#a6d854",
+              "#e5c494",
+              "#6a1ea8",
+              "#1e6aa8",
+              "#65a81e"
+            ]
+          }
+        },
+        "tooltip": [
+          {
+            "field": "YearNum",
+            "type": "quantitative",
+            "title": "Year :",
+            "format": "d"
+          },
+          {
+            "field": "Type of Vehicle",
+            "type": "nominal",
+            "title": "Vehicle Type :"
+          },
+          {
+            "field": "TotalInjuries",
+            "type": "quantitative",
+            "title": "Number of Accidents :",
+            "format": ","
+          }
         ]
       }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "text": "🏍️ Motorcycles caused the most injuries in most years",
+        "align": "left",
+        "baseline": "top",
+        "font": "Arial",
+        "fontSize": 14,
+        "dx": 70,
+        "dy": -220,
+        "color": "black"
+      }
     }
-    ,
-    "tooltip": [
-      {"field": "Type of Vehicle", "title": "Vehicle"},
-      {"field": "TotalInjuries", "title": "Injuries"},
-      {"param": "YearFilter", "title": "Year"}
-    ]
-  },
-
-  "mark": {"type": "arc", "outerRadius": 150, "innerRadius": 0},
+  ],
 
   "view": {"stroke": null}
 }

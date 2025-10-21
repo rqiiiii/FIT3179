@@ -26,7 +26,7 @@
           "lookup": "properties.ISO_A2",
           "from": {
             "data": {
-              "url": "https://gist.githubusercontent.com/rqiiiii/8d732d8696bd3ed347bcc7f22830a8da/raw/0ab5cbfa14b729e6994cc3173495ec14496bc911/road_death_country_2021.csv"
+              "url": "data/road_death_country_2021.csv"
             },
             "key": "flagCode",
             "fields": ["EstimatedRoadTrafficDeathRateCountries_2021"]

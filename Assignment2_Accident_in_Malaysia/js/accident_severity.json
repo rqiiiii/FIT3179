@@ -139,7 +139,7 @@
             "x": 720,
             "y": 150,
             "fontSize": 14,
-            "fontWeight": "bold",
+            "font": "Arial",
             "color": "#333333"
           },
           "encoding": {
@@ -154,7 +154,7 @@
             "x": 745,
             "y": 170,
             "fontSize": 14,
-            "fontWeight": "bold",
+            "font": "Arial",
             "color": "#333333"
           },
           "encoding": {
@@ -169,7 +169,7 @@
             "x": 745,
             "y": 190,
             "fontSize": 14,
-            "fontWeight": "bold",
+            "font": "Arial",
             "color": "#333333"
           },
           "encoding": {
@@ -184,7 +184,7 @@
             "x": 745,
             "y": 210,
             "fontSize": 14,
-            "fontWeight": "bold",
+            "font": "Arial",
             "color": "#333333"
           },
           "encoding": {
@@ -199,7 +199,7 @@
             "x": 745,
             "y": 230,
             "fontSize": 14,
-            "fontWeight": "bold",
+            "font": "Arial",
             "color": "#333333"
           },
           "encoding": {
@@ -214,7 +214,7 @@
             "x": 745,
             "y": 250,
             "fontSize": 14,
-            "fontWeight": "bold",
+            "font": "Arial",
             "color": "#333333"
           },
           "encoding": {
@@ -229,7 +229,7 @@
             "x": 745,
             "y": 270,
             "fontSize": 14,
-            "fontWeight": "bold",
+            "font": "Arial",
             "color": "#333333"
           },
           "encoding": {
@@ -244,7 +244,6 @@
         "dx": 10,
         "dy": 10,
         "fontSize": 14,
-        "fontWeight": "bold",
         "color": "#333333",
         "lineHeight": 40,
         "limit": 300

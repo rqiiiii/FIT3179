@@ -95,9 +95,7 @@
         "type": "text",
         "align": "center",
         "fontSize": 24,
-        "fontWeight": "bold",
-        "font": "Poppins",
-        "fill": "#4b0082"
+        "fontWeight": "bold"
       },
       "encoding": {
         "text": {"signal": "selected_year"},
@@ -105,6 +103,20 @@
         "y": {"value": 40}
       }
     },
+      {
+    "data": {"values": [{}]},
+    "mark": {
+      "type": "rect",
+      "color": "#e5e5e5ee",
+      "cornerRadius": 0
+    },
+    "encoding": {
+      "x": {"value": 5},
+      "x2": {"value": 450},
+      "y": {"value": 10},
+      "y2": {"value": 50}
+    }
+  },
     {
       "data": {"values": [{}]}, 
       "transform": [{"filter": "selected_year == 2021"}],
@@ -112,9 +124,8 @@
         "type": "text",
         "text": "⚠️In 2021, road accident had dropped due to COVID-19 Lockdown",
         "fontSize": 14,
-        "fontWeight": "bold",
-        "font": "Poppins",
-        "fill": "#cd1111",
+        "font": "Arial",
+        "fill": "#000000",
         "align": "left"
       },
       "encoding": {

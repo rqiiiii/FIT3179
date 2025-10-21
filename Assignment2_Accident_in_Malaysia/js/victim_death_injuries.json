@@ -123,8 +123,8 @@
           "align": "left",
           "dx": 12,
           "dy": -140,
-          "fontSize": 13,
-          "fontWeight": "bold",
+          "fontSize": 14,
+          "font": "Arial",
           "color": "#323232"
         },
         "encoding": {

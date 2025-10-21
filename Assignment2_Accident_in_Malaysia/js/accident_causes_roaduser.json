@@ -89,9 +89,10 @@
         "color": "#e5e5e5ee",
         "cornerRadius": 0
       },
+      "data": {"values": [{}]},
       "encoding": {
         "x": {"datum": 2012},
-        "x2": {"datum": 2019},
+        "x2": {"datum": 2020},
         "y": {"datum": 44000},
         "y2": {"datum": 50000}
       }
@@ -100,10 +101,12 @@
       "mark": {
         "type": "text",
         "fontWeight": "normal",
-        "fontSize": 12,
+        "fontSize": 14,
+        "font": "Arial",
         "align": "left",
         "color": "#333333"
       },
+        "data": {"values": [{}]},
       "encoding": {
         "x": {"datum": 2012.2},
         "y": {"datum": 49000},
@@ -113,11 +116,12 @@
     {
       "mark": {
         "type": "text",
-        "fontWeight": "normal",
-        "fontSize": 12,
+        "fontSize": 14,
+        "font": "Arial",
         "align": "left",
         "color": "#333333"
       },
+        "data": {"values": [{}]},
       "encoding": {
         "x": {"datum": 2012.7},
         "y": {"datum": 47000},
@@ -127,11 +131,12 @@
     {
       "mark": {
         "type": "text",
-        "fontWeight": "normal",
-        "fontSize": 12,
+        "fontSize": 15,
+        "font": "Arial",
         "align": "left",
         "color": "#333333"
       },
+        "data": {"values": [{}]},
       "encoding": {
         "x": {"datum": 2012.7},
         "y": {"datum": 45000},

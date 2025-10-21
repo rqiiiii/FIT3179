@@ -48,8 +48,33 @@
         "color": {
           "field": "Type of Vehicle",
           "type": "nominal",
-          "title": "Road User"
-        },
+          "title": "Road User",
+          "scale": {
+            "domain": [
+              "Bicycle",
+              "Trailer/Lorry",
+              "Motorcar",
+              "Motorcycle",
+              "Others",
+              "Pedestrian",
+              "Bus",
+              "Jeep",
+              "Vans"
+            ],
+            "range": [
+              "#66c2a5",
+              "#fc8d62",
+              "#8da0cb",
+              "#e78ac3",
+              "#a6d854",
+              "#e5c494",
+              "#6a1ea8",
+              "#1e6aa8",
+              "#65a81e"
+            ]
+          }
+        }
+        ,
         "tooltip": [
           {"field": "YearNum", "title": "Year"},
           {"field": "Type of Vehicle", "title": "Vehicle Type"},

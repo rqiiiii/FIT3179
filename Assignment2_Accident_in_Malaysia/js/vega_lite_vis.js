@@ -7,13 +7,13 @@ vegaEmbed('#worldmap', spec5, { actions: false })
 
 
 
-var spec1 = "js/accident_injuries_roaduser.json";
+var spec1 = "js/accident_causes_roaduser.json";
 vegaEmbed('#donut', spec1, {
   actions: false,   // hide "Open in Vega Editor" buttons
-  renderer: 'canvas'
+  renderer: "svg"
 }).catch(console.error);
 
-var spec2 = "js/total_accidents.json";
+var spec2 = "js/Malaysia_accident_rate.json";
 vegaEmbed('#choroplethmap', spec2, { actions: false })
 .then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
@@ -24,9 +24,8 @@ vegaEmbed('#bump', spec3, { actions: false })
 .then(function(result) {
 }).catch(console.error);
 
-var spec4 = "js/accident_condition.json";
+var spec4 = "js/victim_death_injuries.json";
 vegaEmbed('#areastack', spec4, {
   actions: false,   // hide "Open in Vega Editor" buttons
-  renderer: 'canvas'
 }).catch(console.error);
 

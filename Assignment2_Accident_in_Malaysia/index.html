@@ -23,14 +23,17 @@
 
   <main>
     <div class="story-text">
-      Malaysia’s road networks are among the busiest in Southeast Asia, connecting millions of people daily. Yet behind this activity lies a worrying reality — road accidents remain a significant public health concern. This feature presents interactive insights into accident trends, vehicle types, and regional risks.
+      Malaysia’s road networks are among the busiest in Southeast Asia, connecting millions of people every day. But behind this movement lies a persistent challenge — <b>road accidents continue to claim thousands of lives each year</b>, making road safety a pressing public concern.
+      This visual story explores <b>how, where, and who</b> is most affected by road accidents in Malaysia. Through global and national comparisons, we uncover key trends that shape the country’s road safety landscape.
     </div>
 
     <!-- World Map -->
     <section>
       <h2>Estimated Road Traffic Death Rate by Country (2021)</h2>
       <div class="chart-text">
-        A global perspective on road traffic fatalities reveals that Libya and Guinea have the highest death rates, while Malaysia sits near the regional average.
+          Across the world, countries like <strong>Libya and Guinea</strong> record the highest road traffic death rates.
+          In contrast, <strong>Malaysia’s rate sits close to the regional average</strong>, suggesting moderate performance —
+          yet still far from the safest nations globally.
       </div>
       <div id="worldmap" class="worldmap"></div>
     </section>
@@ -39,7 +42,10 @@
     <section>
       <h2>Road Accident Rates in Malaysia by State (2011–2021)</h2>
       <div class="chart-text">
-        Across the years, Kuala Lumpur consistently records the highest number of road accidents, with darker shades indicating higher incident counts. In 2021, accident numbers dropped across all states, likely reflecting the impact of COVID-19 lockdowns.
+        Zooming into Malaysia reveals stark contrasts between states.
+        <strong>Kuala Lumpur consistently records the highest accident rates</strong>, reflecting its dense traffic and urban congestion.
+        However, a noticeable dip occurred in <strong id="covidYear">2021</strong>, when lockdowns during the COVID-19 pandemic significantly
+        reduced vehicle movement — offering a glimpse of what safer roads could look like.
         <br><strong>📍Interactive:</strong> Use the slider to select different years and compare accident rankings across Malaysian states.
       </div>
       <div id="choroplethmap" class="choroplethmap"></div>
@@ -49,7 +55,9 @@
     <section>
       <h2>Malaysian State Ranking by Accident Severity (2011–2021)</h2>
       <div class="chart-text">
-        Malaysian states are ranked based on accident severity from 2011 to 2021. Higher ranks indicate more severe accidents for the selected type.
+        Not all states have followed the same path. The bump chart below shows how rankings by accident severity have evolved over time. 
+        Some states show improvement over time, while others have seen worsening trends, 
+        pointing to areas that may require renewed safety focus.        
         <br><strong>📍Interactive:</strong> Use the dropdown to select different severities and compare trends.
       </div>
       <div id="bump" class="bump"></div>
@@ -58,8 +66,10 @@
     <section>
       <h2>Victims Over Time: Deaths vs Injuries (2001–2019)</h2>
       <div class="chart-text">
-       While injuries dropped in 2006, they still remain much higher than deaths. Motorcyclists are the most affected, highlighting their high risk on Malaysian roads.
-      <br><strong>📍Interactive:</strong> Use the slider to filter by year.
+       <b>Injuries have far outnumbered deaths</b>, though both follow similar trends. 
+        Among all road users, <b>motorcyclists remain the most vulnerable</b>, consistently accounting for the majority of casualties — 
+        a reminder of the risks faced by Malaysia’s most common mode of transport.      
+        <br><strong>📍Interactive:</strong> Use the slider to filter by year.
       </div>
       <div id="areastack"></div>
     </section>
@@ -67,8 +77,10 @@
     <section>
       <h2>Accident Causes by Road User Type (2000–2019)</h2>
       <div class="chart-text">
-       Motorcycles were responsible for the largest share of accidents consistently contributed the most to accidents over the years.
-      <br><strong>📍Interactive:</strong> Use the slider to filter by year.
+       <b>Motorcycles</b> have consistently contributed the largest share of road accidents, followed by <b>motorcars</b>. 
+    The dominance of motorcycles in both involvement and impact underscores the urgent need for 
+    <b>targeted awareness campaigns</b>, <b>better infrastructure</b>, and <b>safer riding practices</b>.      
+    <br><strong>📍Interactive:</strong> Use the slider to filter by year.
       </div>
       <div id="donut" class="chart-placeholder"></div>
     </section>

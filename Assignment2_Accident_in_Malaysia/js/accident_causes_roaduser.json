@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Interactive line chart with adjustable Y-axis zoom and annotation about motorcycle injuries.",
+  "width": 850,
+  "height": 450,
+  "config": {"view": {"renderer": "svg"}},
+
+  "data": {
+    "url": "data/accident_injuries_roaduser.csv",
+    "format": {"type": "csv"}
+  },
+
+  "params": [
+    {
+      "name": "yMax",
+      "value": 50000,
+      "bind": {
+        "input": "range",
+        "min": 1000,
+        "max": 50000,
+        "step": 3000,
+        "name": "Y-Axis (zoom): "
+      }
+    }
+  ],
+
+  "transform": [
+    {"calculate": "toNumber(datum.Year)", "as": "YearNum"},
+    {
+      "aggregate": [
+        {"op": "sum", "field": "Value", "as": "TotalInjuries"}
+      ],
+      "groupby": ["YearNum", "Type of Vehicle"]
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {"type": "line", "point": true},
+      "encoding": {
+        "x": {"field": "YearNum", "type": "quantitative", "title": "Year"},
+        "y": {
+          "field": "TotalInjuries",
+          "type": "quantitative",
+          "title": "Total Injuries",
+          "scale": {"domain": [0, {"expr": "yMax"}]}
+        },
+        "color": {
+          "field": "Type of Vehicle",
+          "type": "nominal",
+          "title": "Road User"
+        },
+        "tooltip": [
+          {"field": "YearNum", "title": "Year"},
+          {"field": "Type of Vehicle", "title": "Vehicle Type"},
+          {"field": "TotalInjuries", "title": "Number of Accidents", "format": ","}
+        ]
+      }
+    },
+
+    {
+      "mark": {
+        "type": "rect",
+        "color": "#e5e5e5ee",
+        "cornerRadius": 0
+      },
+      "encoding": {
+        "x": {"datum": 2012},
+        "x2": {"datum": 2019},
+        "y": {"datum": 44000},
+        "y2": {"datum": 50000}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontWeight": "normal",
+        "fontSize": 12,
+        "align": "left",
+        "color": "#333333"
+      },
+      "encoding": {
+        "x": {"datum": 2012.2},
+        "y": {"datum": 49000},
+        "text": {"value": "🏍️ Motorcycles cause the most injuries each year"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontWeight": "normal",
+        "fontSize": 12,
+        "align": "left",
+        "color": "#333333"
+      },
+      "encoding": {
+        "x": {"datum": 2012.7},
+        "y": {"datum": 47000},
+        "text": {"value": "due to high usage and limited protection,"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontWeight": "normal",
+        "fontSize": 12,
+        "align": "left",
+        "color": "#333333"
+      },
+      "encoding": {
+        "x": {"datum": 2012.7},
+        "y": {"datum": 45000},
+        "text": {"value": "increasing accident risks on Malaysian roads."}
+      }
+    }
+  ],
+
+  "view": {"stroke": null}
+}

@@ -118,6 +118,19 @@
         {"filter": "datum.Severity == severitySelect"}
       ],
       "layer": [
+                {
+                "mark": {
+                "type": "rect",
+                "color": "#e5e5e5ee",
+                "cornerRadius": 0
+              },
+              "encoding": {
+              "x": {"value": 710},       
+              "x2": {"value": 930},     
+              "y": {"value": 130},      
+              "y2": {"value": 280}      
+            }
+            },
         {
           "mark": {
             "type": "text",

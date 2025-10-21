@@ -125,7 +125,7 @@
           "dy": -140,
           "fontSize": 13,
           "fontWeight": "bold",
-          "color": "black"
+          "color": "#323232"
         },
         "encoding": {
           "x": {"field": "Year", "type": "temporal"},
@@ -146,7 +146,7 @@
           {"filter": "datum.Condition == 'Deaths'"},
           {"filter": "year(datum.Year) <= endYear"}
         ],
-        "mark": {"type": "rule", "color": "black", "strokeWidth": 2},
+        "mark": {"type": "rule", "color": "#414141", "strokeWidth": 2, "strokeDash": [5, 5]},
         "encoding": {
           "x": {"field": "Year", "type": "temporal"}
         }

@@ -8,7 +8,7 @@ vegaEmbed('#worldmap', spec5, { actions: false })
 
 
 var spec1 = "js/accident_causes_roaduser.json";
-vegaEmbed('#donut', spec1, {
+vegaEmbed('#line', spec1, {
   actions: false,   // hide "Open in Vega Editor" buttons
   renderer: "svg"
 }).catch(console.error);

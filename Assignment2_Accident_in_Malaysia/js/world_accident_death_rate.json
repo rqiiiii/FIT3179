@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 950,
-  "height": 700,
+  "height": 500,
   "projection": { "type": "equalEarth" },
   "config": { "view": { "stroke": null } },
 
@@ -49,11 +49,9 @@
             "range": ["#fcbba1", "#fc9272", "#fb6a4a", "#cb181d"]
           },
           "legend": {
+            "title": "Deaths per 100,000 population",
             "orient": "bottom",
-            "offset": 8,
-            "direction": "horizontal",
-            "columns": 4,
-            "titleAnchor": "middle"
+            "direction": "horizontal"
           }
         },
         "tooltip": [

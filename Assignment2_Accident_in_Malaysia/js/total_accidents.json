@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 950,
-  "height": 600,
+  "height": 500,
   "background": "#ffffff", 
   "autosize": {"type": "fit"},
 
@@ -73,19 +73,13 @@
           "type": "quantitative",
           "scale": {
             "type": "threshold",
-            "domain": [10, 20, 30],
-            "range": ["#fcbba1", "#fc9272", "#fb6a4a", "#cb181d"]
+            "domain": [10, 25, 40],
+            "range": ["#fc9272", "#fb6a4a", "#cb181d","#730e11"]
             },
           "legend": {
-            "orient": "bottom",
-            "offset": 8,
-            "direction": "horizontal",
-            "columns": 4,
-            "titleAnchor": "middle",
             "title": "Accident per 1,000 population",
-            "titleFontSize": 14,
-            "labelFontSize": 11,
-            "gradientLength": 300
+            "orient": "bottom",
+            "direction": "horizontal"
           }
         },
         "tooltip": [
@@ -127,6 +121,40 @@
         "x": {"value": 10},
         "y": {"value": 30}
       }
+    },
+    {
+      "data": {
+        "values": [
+          {"States": "Johor", "longitude": 104.5, "latitude": 2.0},
+          {"States": "Kedah", "longitude": 101.6, "latitude": 6.3},
+          {"States": "Kelantan", "longitude": 103, "latitude": 6},
+          {"States": "Malacca", "longitude": 101.1, "latitude": 2.5},
+          {"States": "Negeri Sembilan", "longitude": 101.1, "latitude": 2.2},
+          {"States": "Pahang", "longitude": 103.9, "latitude": 3.4},
+          {"States": "Penang", "longitude": 99.7, "latitude": 5.4},
+          {"States": "Perak", "longitude": 100.2, "latitude": 4.7},
+          {"States": "Perlis", "longitude": 99.7, "latitude": 6.6},
+          {"States": "Sabah", "longitude": 115.3, "latitude": 5.9},
+          {"States": "Sarawak", "longitude": 116.1, "latitude": 2.5},
+          {"States": "Selangor", "longitude": 100.4, "latitude": 3.6},
+          {"States": "Terengganu", "longitude": 104, "latitude": 5.1},
+          {"States": "Kuala Lumpur", "longitude": 100.4, "latitude": 3.15}
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "fontSize": 11,
+        "fill": "#000"
+      },
+      "encoding": {
+        "longitude": {"field": "longitude"},
+        "latitude": {"field": "latitude"},
+        "text": {"field": "States"}
+      }
     }
+
+
   ]
 }

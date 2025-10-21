@@ -91,7 +91,6 @@
           "values": [
             {
               "Year": "2004",
-              "Value": 20000,
               "Label": "Peak of Accidents",
               "Condition": "Injuries"
             }
@@ -104,7 +103,7 @@
         "mark": {
           "type": "text",
           "align": "left",
-          "dx": 8,
+          "dx": 12,
           "dy": -140,
           "fontSize": 13,
           "fontWeight": "bold",
@@ -120,7 +119,7 @@
           "values": [
             {
               "Year": "2004",
-              "Label": "2004 Peak (Motorcyclists)",
+              "Label": "Peak accident",
               "Condition": "Deaths"
             }
           ]

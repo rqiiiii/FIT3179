@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "description": "Interactive pie chart of road accident injuries by vehicle type by year (no text labels).",
   "width": 850,
-  "height": 400,
+  "height": 500,
 
   "params": [
     {

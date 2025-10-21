@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "width": 700,
-  "height": 500,
+  "height": 450,
   "background": "#fafafa",
   "data": {
     "url": "https://gist.githubusercontent.com/rqiiiii/807b12c0a23de4f9eb4f3ccb411f8820/raw/47f82169eb38ee9a1f2d8d68b9878c7ee2dec6eb/road_accident_severity.csv",
